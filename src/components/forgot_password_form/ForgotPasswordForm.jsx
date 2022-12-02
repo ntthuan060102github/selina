@@ -17,13 +17,16 @@ export default function ForgotPasswordForm () {
     const [countdown, set_countdown] = useState(0)
     const navigate = useNavigate()
     let timer = null
-
+    
     useEffect(() => {
         timer = !timer && setInterval(() => {
             set_countdown(countdown - 1)
             set_message(`Success, redirect to login (${countdown})`)
+            console.log(countdown)
             
-            if (countdown === 0) {
+            if (countdown < 0) {
+                clearInterval(timer)
+                set_countdown(0)
                 navigate("/")
             }
         }, 1000)
@@ -52,7 +55,7 @@ export default function ForgotPasswordForm () {
             }
         )
         const response_data = response.data
-
+        console.log(response_data)
         if (response_data.status_code !== 1) {
             set_form_error(true)
             set_message(response_data.message)
