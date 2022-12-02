@@ -14,24 +14,24 @@ export default function ForgotPasswordForm () {
     const guest_email = useRef()
     const email_regex_validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     const [form_error, set_form_error] = useState(false)
-    const [countdown, set_countdown] = useState(0)
+    const [countdown, set_countdown] = useState(-1)
     const navigate = useNavigate()
     let timer = null
     
     useEffect(() => {
-        timer = !timer && setInterval(() => {
+        timer = countdown > -1 && setInterval(() => {
             set_countdown(countdown - 1)
             set_message(`Success, redirect to login (${countdown})`)
             console.log(countdown)
             
-            if (countdown < 0) {
+            if (countdown <= 0) {
                 clearInterval(timer)
                 set_countdown(0)
                 navigate("/")
             }
         }, 1000)
         return () => clearInterval(timer)
-    }, [countdown])
+    }, [countdown, timer])
 
     const submit_form = async () => {
         const user_email = guest_email.current.value
