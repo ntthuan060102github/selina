@@ -1,5 +1,6 @@
 import UnAuthorization from "./pages/un_authorization/UnAuthorization"
 import ForgotPassword from "./pages/forgot_password/ForgotPassword"
+import "./base.css"
 
 import {
   BrowserRouter as Router,

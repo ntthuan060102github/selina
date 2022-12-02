@@ -24,7 +24,7 @@ export default function ForgotPasswordForm () {
             set_message(`Success, redirect to login (${countdown})`)
             
             if (countdown === 0) {
-                navigate("/login")
+                navigate("/")
             }
         }, 1000)
         return () => clearInterval(timer)
