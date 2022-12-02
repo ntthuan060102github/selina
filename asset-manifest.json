@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/selina/static/css/main.ee8df90e.css",
+    "main.js": "/selina/static/js/main.434f579b.js",
+    "static/media/background1.jpg": "/selina/static/media/background1.113d948e4eefa7c2b045.jpg",
+    "index.html": "/selina/index.html",
+    "main.ee8df90e.css.map": "/selina/static/css/main.ee8df90e.css.map",
+    "main.434f579b.js.map": "/selina/static/js/main.434f579b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ee8df90e.css",
+    "static/js/main.434f579b.js"
+  ]
+}
