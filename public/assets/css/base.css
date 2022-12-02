@@ -2,7 +2,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     text-decoration: none;
     list-style-type: none;
+}
+:root {
+    --text-color-1: #000;
+    --text-color-2: #ACACAC;
+    --text-color-3: #fff;
+    --primary-text-color: #b8a07c;
+    --primary-color: #b8a07c;
+    --secondary-color: #F8EDDD;
+    --primary-color-highlight: #e7bd80;
+    --error-color: #da0404;
+}
+body {
+    width: 100vw;
+    height: 100vh;
 }
