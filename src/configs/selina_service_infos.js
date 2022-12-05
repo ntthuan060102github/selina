@@ -5,6 +5,9 @@ const SELINA_API_SERVICE_INFOS = {
         },
         production: {
             domain: "https://selina-auth.herokuapp.com/selina-auth-api"
+        },
+        local: {
+            domain: "http://127.0.0.1:8800/selina-auth-api"
         }
     },
     profile: {
@@ -15,7 +18,7 @@ const SELINA_API_SERVICE_INFOS = {
             domain: "https://selina-profile.herokuapp.com/selina-profile-api"
         },
         local: {
-            domain: "http://127.0.0.1:8800/selina-profile-api"
+            domain: "http://127.0.0.1:8801/selina-profile-api"
         }
     },
     bookshelves: {
@@ -24,6 +27,9 @@ const SELINA_API_SERVICE_INFOS = {
         },
         production: {
             domain: "https://selina-bookshelves.herokuapp.com/selina-bookshelves-api"
+        },
+        local: {
+            domain: "http://127.0.0.1:8802/selina-bookshelves-api"
         }
     }
 }

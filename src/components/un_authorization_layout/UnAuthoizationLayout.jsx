@@ -4,7 +4,7 @@ function UnAuthorizationLayout ({ nav, body }){
     return (
       <div className="un-authorization-layout">
         <div className="un-authorization-layout__main-region">
-          <img className="main-region__logo" src="/assets/images/logo.png" alt="selina logo"/>
+          <img className="main-region__logo" src="/images/logo.png" alt="selina logo"/>
           <div className="main-region__nav">
             {nav}
           </div>
