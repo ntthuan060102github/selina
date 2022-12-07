@@ -7,8 +7,6 @@
 .form__form-input{
     position: relative;
 }
-.form__input-label{
-}
 .form__input {
     height: 50px;
     width: 100%;
@@ -44,7 +42,7 @@
     color: var(--text-color-3);
     margin-left: auto;
     margin-top: 30px;
-    transition: all 0.25s;
+    transition: color 0.25s;
     user-select: none;
     cursor: pointer;
 }
@@ -52,5 +50,9 @@
     background-color: var(--primary-color-highlight);
 }
 .error .form__message {
-    color: var(--error-color)
+    color: var(--error-color);
+    height: 20px;
+}
+.error .form__submit-btn{
+    margin-top: 10px;
 }
