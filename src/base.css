@@ -10,13 +10,23 @@
     --text-color-1: #000;
     --text-color-2: #ACACAC;
     --text-color-3: #fff;
+    --text-color-4: #b0b1b3;
+    --text-color-highlight: #32a4ea;
     --primary-text-color: #b8a07c;
     --primary-color: #b8a07c;
     --secondary-color: #F8EDDD;
     --primary-color-highlight: #e7bd80;
+    --blue-primary-color: #32a4ea;
+    --white-color: #fff;
     --error-color: #da0404;
+    --background-color-1: #e9e9e959;
 }
 body {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    overflow-x: hidden;
 }
+/* body::-webkit-scrollbar {
+    width: 20px;
+} */
+
