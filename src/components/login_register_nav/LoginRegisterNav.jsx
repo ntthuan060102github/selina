@@ -1,11 +1,7 @@
-import {
-    useState
-} from "react"
 import "./login_register_nav.css"
 
 export default function LoginRegisterNav (props){ 
     const nav_handler = () => {
-        console.log(1)
         props.nav_control(!props.curr_nav)
     }
 

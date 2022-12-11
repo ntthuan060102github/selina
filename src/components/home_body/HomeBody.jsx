@@ -1,4 +1,7 @@
 import "./home_body.css"
+import ProductGrid from "../product_gird/ProductGird"
+import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
+import { APP_ENV } from "../../configs/app_config"
 
 export default function MainLayout(props) {
     const active_categories_nav = true //props?.role === "normal_user"
@@ -56,7 +59,11 @@ export default function MainLayout(props) {
                 : <></>
             }
             <div className="home-body__main-area">
-                
+                <ProductGrid 
+                    api={
+                        `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}`
+                    }
+                />
             </div>
         </div>
     )

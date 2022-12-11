@@ -19,23 +19,6 @@ function App() {
     set_has_token(localStorage.getItem("access_token"))
   })
 
-  // useEffect(() => {
-  //   const ping = async () => {
-  //     const ping_response = await axios.get(
-  //       `${SELINA_API_SERVICE_INFOS.auth[APP_ENV].domain}/ping`,
-  //       {
-  //         headers: {
-  //           Authorization: localStorage.getItem("access_token")
-  //         }
-  //       }
-  //     )
-  //     console.log(ping_response.data)
-  //     set_is_authenticated(ping_response?.data?.status_code === 1)
-  //     redirect("/")
-  //   }
-  //   ping()
-  // }, [])
-
   return (
     <Router>
       <Routes>
@@ -52,7 +35,7 @@ function App() {
           element={
             has_token 
             ? <Navigate to="/"/>
-            : <UnAuthorization/>
+            : <UnAuthorization set_has_token={set_has_token}/>
           }
         />
         <Route 

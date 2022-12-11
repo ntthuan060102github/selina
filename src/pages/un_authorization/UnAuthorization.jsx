@@ -6,14 +6,14 @@ import {
     useState
 } from "react"
 
-export default function UnAuthorization() {
+export default function UnAuthorization({set_has_token}) {
     const [in_register, set_in_register] = useState(false)
     
     return (
     <div className="login">
         <UnAuthorizationLayout 
             nav={<LoginRegisterNav curr_nav={in_register} nav_control={set_in_register}/>}
-            body={in_register ? <RegisterForm/> : <LoginForm/>}
+            body={in_register ? <RegisterForm/> : <LoginForm set_has_token={set_has_token}/>}
         />
     </div>
   )
