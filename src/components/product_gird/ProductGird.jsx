@@ -8,14 +8,14 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { Pagination } from "@mui/material"
 
-export default function ProductGrid({api}) {
+export default function ProductGrid({api, set_has_token}) {
     const [products, set_products] = useState([])
     const [curr_page, set_curr_page] = useState(1)
     const [num_pages, set_num_pages] = useState(1)
     const navigate = useNavigate()
 
     useEffect(() => {
-        const get_data_at_home = async (api) => {
+        const get_data_at_home = async () => {
             const response = await axios.get(
                 `${api}/get-products-at-home?page=${curr_page.toString()}&limit=20`,
                 {
@@ -25,14 +25,15 @@ export default function ProductGrid({api}) {
                 }
             ).then(response => {
                 if (response?.data?.status_code?.toString() === '2') {
+                    localStorage.removeItem("access_token")
+                    set_has_token(false)
                     return navigate("/authorization")
                 }
                 return response
             })
-            console.log(response?.data?.data)
             set_products(response?.data?.data?.docs)
             set_num_pages(response?.data?.data?.pages)
-            set_curr_page(response?.data?.data?.page)
+            set_curr_page(response?.data?.data?.page || 1)
         }
         get_data_at_home(api)
     }, [curr_page])

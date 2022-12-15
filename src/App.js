@@ -12,12 +12,12 @@ import {
 import { useEffect, useState } from "react"
 
 function App() {
-  const [is_authenticated, set_is_authenticated] = useState(false)
+  const [user_data, set_user_data] = useState({})
   const [has_token, set_has_token] = useState("")
 
   useEffect(() => {
     set_has_token(localStorage.getItem("access_token"))
-  })
+  }, [])
 
   return (
     <Router>
@@ -26,7 +26,7 @@ function App() {
           path="/" 
           element={
             has_token 
-            ? <Home/>
+            ? <Home set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />
