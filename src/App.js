@@ -1,6 +1,7 @@
 import UnAuthorization from "./pages/un_authorization/UnAuthorization"
 import ForgotPassword from "./pages/forgot_password/ForgotPassword"
 import Home from "./pages/home/Home"
+import Search from "./pages/search/Search"
 import "./base.css"
 
 import {
@@ -12,7 +13,6 @@ import {
 import { useEffect, useState } from "react"
 
 function App() {
-  const [user_data, set_user_data] = useState({})
   const [has_token, set_has_token] = useState("")
 
   useEffect(() => {
@@ -27,6 +27,14 @@ function App() {
           element={
             has_token 
             ? <Home set_has_token={set_has_token}/>
+            : <Navigate to="/authorization"/>
+          }
+        />
+        <Route 
+          path="/search" 
+          element={
+            has_token 
+            ? <Search set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />

@@ -1,17 +1,17 @@
 import "./home_body.css"
-import ProductGrid from "../product_gird/ProductGird"
+import ProductGrid from "../product_grid/ProductGrid"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import AddProductPopup from "../add_product_popup/AddProductPopup"
 
 export default function HomeBody({set_has_token}) {
     const [active_categories_nav, set_active_categories_nav] = useState(false)
     const [active_banner, set_active_banner] = useState(false)
-    const [active_shop_label, set_active_shop_label] = useState(true)
-    const [active_add_product_btn, set_active_add_product_btn] = useState(true)
+    const [active_shop_label, set_active_shop_label] = useState(false)
+    const [active_add_product_btn, set_active_add_product_btn] = useState(false)
     const [user_data, set_user_data] = useState({})
     const navigate = useNavigate()
 
@@ -35,11 +35,12 @@ export default function HomeBody({set_has_token}) {
 
             const user_role = response?.data?.role
             const user_data = response?.data?.data
+            
             set_user_data(user_data)
-            // set_active_categories_nav(user_role === "normal_user")
-            // set_active_banner(user_role === "normal_user")
-            // set_active_shop_label(user_role === "seller")
-            // set_active_add_product_btn(user_role === "seller")
+            set_active_categories_nav(user_role === "normal_user")
+            set_active_banner(user_role === "normal_user")
+            set_active_shop_label(user_role === "seller")
+            set_active_add_product_btn(user_role === "seller")
         }
         get_my_info()
     }, [])
@@ -67,9 +68,9 @@ export default function HomeBody({set_has_token}) {
                     </div>
                     <ul className="home-body__categories-nav-list">
                         <li className="home-body__categories-nav-item">
-                            <a href="#" className="home-body__categories-nav-item-link">
+                            <Link to="/search" className="home-body__categories-nav-item-link">
                                 Thuan123
-                            </a>
+                            </Link>
                         </li>
                         <li className="home-body__categories-nav-item">
                             <a href="#" className="home-body__categories-nav-item-link">
@@ -96,26 +97,34 @@ export default function HomeBody({set_has_token}) {
                 : <></>
             }
             <div className="home-body__seller-area">
-                <div className="home-body__seller-label">
-                    <div className="home-body__seller-label-wrapper">
-                        <img 
-                            src={user_data?.avatar_url || "/images/default_avt.png"}
-                            alt="" 
-                            className="home-body__seller-avt" 
-                        />
-                        <div className="home-body__seller-name">
-                            Trong Thuan
+                {
+                    active_shop_label
+                    ? <div className="home-body__seller-label">
+                        <div className="home-body__seller-label-wrapper">
+                            <img 
+                                src={user_data?.avatar_url || "/images/default_avt.png"}
+                                alt="" 
+                                className="home-body__seller-avt" 
+                            />
+                            <div className="home-body__seller-name">
+                                Trong Thuan
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="home-body__add-product-area-wrapper">
-                    <AddProductPopup className="home-body__add-product-area" set_has_token={set_has_token}/>   
-                </div>
+                    : <></>
+                }
+                {
+                    active_add_product_btn
+                    ? <div className="home-body__add-product-area-wrapper">
+                        <AddProductPopup className="home-body__add-product-area" set_has_token={set_has_token}/>   
+                    </div>
+                    : <></>
+                }
             </div>
             <div className="home-body__main-area">
                 <ProductGrid 
                     api={
-                        `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}`
+                        `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/get-products-at-home?`
                     }
                     set_has_token={set_has_token}
                 />

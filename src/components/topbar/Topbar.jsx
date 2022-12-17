@@ -1,19 +1,32 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { useRef } from 'react';
+import { useNavigate, Link } from "react-router-dom"
 import "./topbar.css"
 
 export default function TopBar() {
+    const keyword = useRef()
+    const navigate = useNavigate()
+    const submit_search_handler = (e) => {
+        if (e.key === 'Enter') {
+            const k = keyword?.current?.value
+
+            if (k) {
+                navigate(`/search?keyword=${k}`)
+            }
+        }
+    }
 
     return (
         <div className="top-bar">
             <div className="top-bar__items">
                 <div className="top-bar__item">
-                    <a className="top-bar__logo" href='/'>
+                    <Link className="top-bar__logo" to='/'>
                         <img src="/images/logo.png" alt="" className="top-bar__logo-img" />
-                    </a>
+                    </Link>
                 </div>
                 <div className="top-bar__item top-bar__item-search">
-                    <div className="top-bar__search-area">
+                    <div className="top-bar__search-area" onKeyDown={submit_search_handler}>
                         <div className="top-bar__search-left">
                             <label className="top-bar__search-label" htmlFor="top-bar__search-input">
                                 <svg width="25" height="25" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,20 +35,19 @@ export default function TopBar() {
                             </label>
                         </div>
                         <div className="top-bar__search-right">
-                            <input type="text" className="top-bar__search-input" id="top-bar__search-input" placeholder="Search"/>
+                            <input ref={keyword} type="text" className="top-bar__search-input" id="top-bar__search-input" placeholder="Search"/>
                         </div>
                     </div>
                 </div>
                 <div className="top-bar__item">
                     <div className="top-bar__utility-tools">
                         <div className="top-bar__utility-tool">
-                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 12L12 10.5C12 7.18629 14.6863 4.5 18 4.5V4.5C21.3137 4.5 24 7.18629 24 10.5L24 12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                            <path d="M22.5 21V18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                            <path d="M13.5 21V18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                            <path d="M6 16C6 14.1144 6 13.1716 6.58579 12.5858C7.17157 12 8.11438 12 10 12H26C27.8856 12 28.8284 12 29.4142 12.5858C30 13.1716 30 14.1144 30 16V23.5C30 27.2712 30 29.1569 28.8284 30.3284C27.6569 31.5 25.7712 31.5 22 31.5H14C10.2288 31.5 8.34315 31.5 7.17157 30.3284C6 29.1569 6 27.2712 6 23.5V16Z" stroke="white" strokeWidth="2"/>
-                        </svg>
-
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12L12 10.5C12 7.18629 14.6863 4.5 18 4.5V4.5C21.3137 4.5 24 7.18629 24 10.5L24 12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                                <path d="M22.5 21V18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                                <path d="M13.5 21V18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                                <path d="M6 16C6 14.1144 6 13.1716 6.58579 12.5858C7.17157 12 8.11438 12 10 12H26C27.8856 12 28.8284 12 29.4142 12.5858C30 13.1716 30 14.1144 30 16V23.5C30 27.2712 30 29.1569 28.8284 30.3284C27.6569 31.5 25.7712 31.5 22 31.5H14C10.2288 31.5 8.34315 31.5 7.17157 30.3284C6 29.1569 6 27.2712 6 23.5V16Z" stroke="white" strokeWidth="2"/>
+                            </svg>
                         </div>
                     </div>
                 </div>

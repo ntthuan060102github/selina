@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import { useState, useEffect } from "react"
-import AddProductForm from "../add_product_form/AddProductForm"
+import ProductForm from "../product_form/ProductForm"
 
 export default function AddProductPopup({set_has_token}) {
     const [open, set_open] = useState(false);
@@ -35,7 +35,7 @@ export default function AddProductPopup({set_has_token}) {
                 onClose={handle_close} 
                 maxWidth={false}
             >
-                <AddProductForm set_open={set_open} set_has_token={set_has_token}/>
+                <ProductForm set_open={set_open} set_has_token={set_has_token}/>
             </Dialog>
         </div>
     )
