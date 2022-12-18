@@ -1,9 +1,11 @@
 import "./book_card.css"
+import { Link } from "react-router-dom"
+
 
 export default function BookCard({book}) {
 
     return (
-        <div className="book-card">
+        <Link to={`/book/${book.product_id}`} className="book-card">
             <div className="book-card__img-area">
                 <img src={book?.image} alt="" className="book-card__img" />
             </div>
@@ -18,6 +20,6 @@ export default function BookCard({book}) {
                     {book?.price}đ
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

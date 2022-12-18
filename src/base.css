@@ -11,6 +11,7 @@
     --text-color-2: #ACACAC;
     --text-color-3: #fff;
     --text-color-4: #b0b1b3;
+    --text-color-5: #666666
     --text-color-highlight: #32a4ea;
     --primary-text-color: #b8a07c;
     --primary-color: #b8a07c;
@@ -23,12 +24,13 @@
     --success-color: #28b847;
     --green-color: #28b847;
     --red-color: #f93c3c;
+    --black-color: #000;
     --green-highlight-color: #1f9839;
     --red-highlight-color: #dc1919;
-    /* --background-color-1: #e9e9e9; */
     --background-color-1: #fff;
     --background-color-2: #cbcb7c9c;
     --background-color-3: #dedede;
+    --background-color-4: #3c3c3c;
     --white-background-color: #fff;
     --border-color-1: #ccc;
     --border-highlight-color-1: #353535;

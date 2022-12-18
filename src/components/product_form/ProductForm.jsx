@@ -10,17 +10,21 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
     const [form_message, set_form_message] = useState("")
     const [message_status, set_message_status] = useState(false)
     const [seller_submit_add_btn, set_seller_submit_add_btn] = useState(!Boolean(book_data))
+    const [seller_cancel_add_btn, set_seller_cancel_add_btn] = useState(!Boolean(book_data))
     const [seller_submit_modify_btn, set_seller_submit_modify_btn] = useState(Boolean(book_data))
+    const [seller_delete_btn, set_seller_delete_btn] = useState(Boolean(book_data))
 
     const name_dom = useRef()
     const author_dom = useRef()
     const desc_dom = useRef()
     const stock_dom = useRef()
     const price_dom = useRef()
+    const preview_img_dom = useRef()
     const navigate = useNavigate()
 
     const preview_image_handler = (e) => {
         set_preview_image(e.target.files[0])
+        preview_img_dom.current.src = URL.createObjectURL(e.target.files[0])
     }
     const submit_post_handler = async (e) => {
         const form_data = new FormData()
@@ -51,7 +55,7 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         }
 
         const post_res = await axios.post(
-            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/new-product`,
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/add-new-product`,
             form_data,
             {
                 headers: {
@@ -79,18 +83,19 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
     }
 
     const submit_modify_handler = async (e) => {
-
+        console.log(e)
     }
 
     useEffect(() => {
         if (Boolean(book_data)) {
             name_dom.current.value = book_data?.name
-            author_dom.current.value = book_data?.author
+            author_dom.current.value = book_data?.author || ""
             desc_dom.current.value = book_data?.desc
             stock_dom.current.value = book_data?.quantity
             price_dom.current.value = book_data?.price
+            preview_img_dom.current.src = book_data?.image
         }
-    })
+    }, [])
 
     return (
         <div className="product-form">
@@ -105,14 +110,10 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                     Chọn hình
                 </label>
                 <div className="product-form__preview-img-wrapper">
-                    {
-                        preview_image 
-                        && <img 
-                            src={URL.createObjectURL(preview_image)} 
-                            alt="" 
-                            className="product-form__preview-img" 
-                        />
-                    }
+                    <img 
+                        className="product-form__preview-img" 
+                        ref={preview_img_dom}
+                    />
                 </div>
             </div>
             <div className="product-form__info-area">
@@ -212,20 +213,33 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                             )
                         }
                     >
-                    <div className="product-form__btn-icon">
-                        <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect 
-                                width="30" 
-                                height="30" 
-                                className="product-form__btn-rect-tag--submit"
-                            />
-                            <circle cx="15" cy="15" r="11.25" stroke="white"/>
-                            <path d="M10 15L13.75 18.75L20 11.25" stroke="white"/>
-                        </svg>
-                    </div>  
-                    <div className="product-form__btn-label">Xác nhận</div>
+                        <div className="product-form__btn-icon">
+                            <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect 
+                                    width="30" 
+                                    height="30" 
+                                    className="product-form__btn-rect-tag--submit"
+                                />
+                                <circle cx="15" cy="15" r="11.25" stroke="white"/>
+                                <path d="M10 15L13.75 18.75L20 11.25" stroke="white"/>
+                            </svg>
+                        </div>  
+                        <div className="product-form__btn-label">
+                            Xác nhận
+                        </div>
                     </div>
-                    <div className="product-form__btn product-form__btn--cancel" onClick={() => set_open(false)}> 
+                    <div 
+                        className="product-form__btn product-form__btn--cancel" 
+                        onClick={
+                            seller_cancel_add_btn 
+                            ? () => set_open(false)
+                            : (
+                                seller_delete_btn
+                                ? () => console.log("delete")
+                                : () => console.log("delete")
+                            )
+                        }
+                    > 
                         <div className="product-form__btn-icon">
                             <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect 

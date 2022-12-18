@@ -2,6 +2,7 @@ import UnAuthorization from "./pages/un_authorization/UnAuthorization"
 import ForgotPassword from "./pages/forgot_password/ForgotPassword"
 import Home from "./pages/home/Home"
 import Search from "./pages/search/Search"
+import BookDetail from "./pages/book_detail/BookDetail"
 import "./base.css"
 
 import {
@@ -31,10 +32,18 @@ function App() {
           }
         />
         <Route 
-          path="/search" 
+          path="/book/:book_id" 
           element={
             has_token 
-            ? <Search set_has_token={set_has_token}/>
+            ? <BookDetail set_has_token={set_has_token}/>
+            : <Navigate to="/authorization"/>
+          }
+        />
+        <Route 
+          path="/" 
+          element={
+            has_token 
+            ? <Home set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />
