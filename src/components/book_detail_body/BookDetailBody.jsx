@@ -30,7 +30,6 @@ export default function BookDetailBody({set_has_token, book_id}) {
                 return response
             })
 
-            console.log(response?.data)
             set_book(response?.data?.data)
             set_role(response?.data?.user_role)
         }

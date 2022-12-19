@@ -61,6 +61,7 @@
     align-items: center;
     border: 1px solid var(--border-color-1);
     padding: 8px 12px;
+    border-radius: 50px;
 }
 .book-detail-info__counter-btn,
 .book-detail-info__counter-item {
@@ -76,12 +77,26 @@
     text-align: center;
     font-size: 17px;
 }
+.book-detail-info__take-an-order-area {
+    height: 50px;
+}
 .book-detail-info__submit {
     margin-left: 60px;
     text-align: center;
     color: var(--white-color);
-    background-color: var(--background-color-4);
+    background-color: var(--green-color);
     padding: 0 16px;
     display: flex;
     align-items: center;
+    transition: 0.25s;
+    border-radius: 50px;
+}
+.book-detail-info__submit:hover {
+    background-color: var(--green-highlight-color);
+}
+.book-detail-info__submit.blocked {
+    opacity: 0.8;
+}
+.book-detail-info__submit.blocked:hover {
+    background-color: var(--green-color);
 }

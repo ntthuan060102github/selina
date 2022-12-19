@@ -46,7 +46,6 @@ export default function RegisterForm() {
             }
         )
         const register_result = register_response.data
-        console.log(register_result)
         
         set_form_message(register_result.message)
         

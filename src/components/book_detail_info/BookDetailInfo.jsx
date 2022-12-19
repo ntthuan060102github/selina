@@ -1,9 +1,12 @@
 import "./book_detail_info.css"
-import { useRef, useState, forwardRef } from "react"
+import { useRef, useState, forwardRef, useEffect } from "react"
 import Stack from '@mui/material/Stack'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
-import Button from '@mui/material/Button'
+import axios from "axios"
+import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
+import { APP_ENV } from "../../configs/app_config"
+import { useNavigate } from "react-router-dom"
 
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -11,7 +14,9 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 export default function BookDetailInfo({set_has_token, book_data}) {
     const counter = useRef()
-    const [open, set_open_toastify] = useState(false);
+    const [active_submit_btn, set_active_submit_btn] = useState(true)
+    const [open, set_open_toastify] = useState(false)
+    const navigate = useNavigate()
 
     const modify_counter_increase_handle = () => {
         let count = Number(counter.current?.value)
@@ -26,17 +31,39 @@ export default function BookDetailInfo({set_has_token, book_data}) {
         }
         counter.current.value = count - 1
     }
-    const add_to_cart_handler = () => {
-        set_open_toastify(true)
-        
-    }
+    const add_to_cart_handler = async () => {
+        set_active_submit_btn(false)
+        const res = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/add-product-to-cart`, 
+            {
+                quantity: Number(counter.current.value),
+                book_id: book_data.product_id
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
 
+        if (res?.data?.status_code.toString() === "1") {
+            set_open_toastify(true)
+        }
+        set_active_submit_btn(true)
+    }
     const handle_close_toastify = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
         set_open_toastify(false);
-    };
+    }
 
     return (
         <div className="book-detail-info">
@@ -90,7 +117,16 @@ export default function BookDetailInfo({set_has_token, book_data}) {
                                 </div>
                             </div>
                         </div>
-                        <div className="book-detail-info__submit" onClick={add_to_cart_handler}>
+                        <div 
+                            className={
+                                `book-detail-info__submit ${!active_submit_btn ? "blocked": ""}`
+                            }
+                            onClick={
+                                active_submit_btn 
+                                ? add_to_cart_handler 
+                                : () => {}
+                            }
+                        >
                             Them vao gio hang
                         </div>
                     </div>

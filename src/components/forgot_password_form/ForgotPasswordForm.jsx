@@ -22,7 +22,6 @@ export default function ForgotPasswordForm () {
         timer = countdown > -1 && setInterval(() => {
             set_countdown(countdown - 1)
             set_message(`Success, redirect to login (${countdown})`)
-            console.log(countdown)
             
             if (countdown <= 0) {
                 clearInterval(timer)
@@ -55,7 +54,7 @@ export default function ForgotPasswordForm () {
             }
         )
         const response_data = response.data
-        console.log(response_data)
+
         if (response_data.status_code !== 1) {
             set_form_error(true)
             set_message(response_data.message)
