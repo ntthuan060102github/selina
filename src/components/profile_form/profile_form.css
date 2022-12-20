@@ -80,3 +80,6 @@
 .profile-form__form-submit-btn:hover {
     background-color: var(--blue-primary-highlight-color);
 }
+.profile-form__form-item--readonly > input{
+    outline: unset !important;
+}

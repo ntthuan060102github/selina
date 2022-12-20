@@ -52,6 +52,7 @@
     transition: 0.25s;
     user-select: none;
     cursor: pointer;
+    margin-top: 16px;
 }
 .secondary-layout__logout-btn:hover {
     background-color: var(--blue-primary-highlight-color);
