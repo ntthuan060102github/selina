@@ -56,3 +56,8 @@
 .error .form__submit-btn{
     margin-top: 10px;
 }
+.form__nav-to-forgot-password {
+    float: right;
+    margin-right: 16px;
+    color: var(--black-color);
+}
