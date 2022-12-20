@@ -1,21 +1,12 @@
 import "./cart_body.css"
-import ShopTag from "../shop_tag/ShopTag"
-import CartItem from "../cart_item/CartItem"
+import ShopSection from "../shop_section/ShopSection"
 
 export default function CartBody({set_has_token}) {
 
     return (
         <div className="cart-body">
-            <div className="cart-body__shop">
-                <ShopTag/>
-                <CartItem/>
-                <CartItem/>
-            </div>
-            <div className="cart-body__shop">
-                <ShopTag/>
-                <CartItem/>
-                <CartItem/>
-            </div>
+            <ShopSection/>
+            <ShopSection/>
             <div className="cart-body__receipt">
                 <div className="cart-body__receipt-content">
                     Tổng cộng:

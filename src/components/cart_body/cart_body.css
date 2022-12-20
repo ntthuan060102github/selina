@@ -19,7 +19,7 @@
     background-color: var(--blue-primary-color);
     height: var(--height-btn);
     border-radius: var(--height-btn);
-    width: 120px;
+    width: 144px;
 }
 .cart-body__payment-btn-content {
     display: flex;

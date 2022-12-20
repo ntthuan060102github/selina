@@ -110,7 +110,7 @@ export default function ProfileForm({set_has_token}) {
             <Stack spacing={2} sx={{ width: '0' }}>
                 <Snackbar open={open} autoHideDuration={3000} onClose={handle_close_toastify}>
                     <Alert onClose={handle_close_toastify} severity="success" color="info" sx={{ width: '100%' }}>
-                        Them vao gio hang thanh cong!
+                        Đã cập nhật thông tin cá nhân!
                     </Alert>
                 </Snackbar>
             </Stack>
@@ -120,34 +120,38 @@ export default function ProfileForm({set_has_token}) {
                 </div>
                 <div className="profile-form__row profile-form__main">
                     <div className="profile-form__form">
-                        <div className="profile-form__form-item profile-form__form-item--readonly">
+                        <div className="profile-form__form-labels">
                             <label htmlFor="profile-form__email-id" className="profile-form__form-label">Email</label>
-                            <input ref={email_dom} readOnly type="text" className="profile-form__form-input" id="profile-form__email-id" />
-                        </div>
-                        <div className="profile-form__form-item">
                             <label htmlFor="profile-form__full-name-id" className="profile-form__form-label">Họ và tên</label>
-                            <input ref={full_name_dom} type="text" className="profile-form__form-input" id="profile-form__full-name-id" />
-                        </div>
-                        <div className="profile-form__form-item">
                             <label htmlFor="profile-form__phone-id" className="profile-form__form-label">Số điện thoại</label>
-                            <input ref={phone_dom} type="text" className="profile-form__form-input" id="profile-form__phone-id" />
-                        </div>
-                        <div className="profile-form__form-item profile-form__form-item--radio">
                             <label className="profile-form__form-label">Giới tính</label>
-                            <div className="profile-form__radio-area">
-                                <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-male-id" name="profile-form__genre-id" />
-                                <label htmlFor="profile-form__genre-male-id" className="profile-form__radio-label">Nam</label>
-                                <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id"name="profile-form__genre-id" />
-                                <label htmlFor="profile-form__genre-female-id" className="profile-form__radio-label">Nữ</label>
-                            </div>
-                        </div>
-                        <div className="profile-form__form-item">
                             <label htmlFor="profile-form__address-id" className="profile-form__form-label">Địa chỉ</label>
-                            <input ref={address_dom} type="text" className="profile-form__form-input" id="profile-form__address-id" />
                         </div>
-                        <div className="profile-form__form-item">
-                            <div className="profile-form__form-submit-btn" onClick={modify_info_handler}>
-                                {submit_loading ? <CircularProgress color="inherit" style={{padding: "8px"}}/> : "Lưu"}
+                        <div className="profile-form__form-inputs">
+                            <div className="profile-form__form-item profile-form__form-item--readonly">
+                                <input ref={email_dom} readOnly type="text" className="profile-form__form-input" id="profile-form__email-id" />
+                            </div>
+                            <div className="profile-form__form-item">
+                                <input ref={full_name_dom} type="text" className="profile-form__form-input" id="profile-form__full-name-id" />
+                            </div>
+                            <div className="profile-form__form-item">
+                                <input ref={phone_dom} type="text" className="profile-form__form-input" id="profile-form__phone-id" />
+                            </div>
+                            <div className="profile-form__form-item profile-form__form-item--radio">
+                                <div className="profile-form__radio-area">
+                                    <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-male-id" name="profile-form__genre-id" />
+                                    <label htmlFor="profile-form__genre-male-id" className="profile-form__radio-label">Nam</label>
+                                    <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id"name="profile-form__genre-id" />
+                                    <label htmlFor="profile-form__genre-female-id" className="profile-form__radio-label">Nữ</label>
+                                </div>
+                            </div>
+                            <div className="profile-form__form-item">
+                                <input ref={address_dom} type="text" className="profile-form__form-input" id="profile-form__address-id" />
+                            </div>
+                            <div className="profile-form__form-item">
+                                <div className="profile-form__form-submit-btn" onClick={modify_info_handler}>
+                                    {submit_loading ? <CircularProgress color="inherit" style={{padding: "8px"}}/> : "Lưu"}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -35,14 +35,15 @@
 .cart-item__quantity,
 .cart-item__total {
     display: flex;
+    min-width: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 32px;
+    margin: 0 24px;
     line-height: 2rem;
 }
 .cart-item__quantity-controller {
-    width: calc(100% + 16px);
+    width: calc(80% + 16px);
     border: 1px solid var(--border-color-1);
     display: flex;
     justify-content: space-between;

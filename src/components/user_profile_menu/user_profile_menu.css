@@ -3,7 +3,7 @@
     justify-content: flex-start;
     align-items: center;
     color: var(--black-color);
-    margin: 2px 0;
+    margin: 2px 20px;
 }
 .user-profile-menu__name {
     margin-left: 8px;  

@@ -1,0 +1,9 @@
+.shop-section__selector {
+    display: flex;
+    align-items: center;
+}
+.shop-section__selector-checkbox {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
