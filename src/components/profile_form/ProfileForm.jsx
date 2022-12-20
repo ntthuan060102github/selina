@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import Stack from '@mui/material/Stack'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -16,7 +17,8 @@ export default function ProfileForm({set_has_token}) {
     const navigate = useNavigate()
     const [preview_new_avt, set_preview_new_avt] = useState(null)
     const [new_avt_img, set_new_avt_img] = useState(null)
-    const [open, set_open_toastify] = useState(true)
+    const [open, set_open_toastify] = useState(false)
+    const [submit_loading, set_submit_loading] = useState(false)
 
     const full_name_dom = useRef()
     const email_dom = useRef()
@@ -67,11 +69,12 @@ export default function ProfileForm({set_has_token}) {
 
         const form_data = new FormData()
 
+        set_submit_loading(true)
         form_data.append("full_name", full_name)
         form_data.append("phone_num", phone_num)
         form_data.append("address", address)
         form_data.append("gender", gender)
-        form_data.append("file", file)
+        form_data.append("image", file)
 
         const modify_response = await axios.post(
             `${SELINA_API_SERVICE_INFOS.profile[APP_ENV].domain}/modify-personal-info`,
@@ -89,9 +92,9 @@ export default function ProfileForm({set_has_token}) {
             }
             return response
         })
-        console.log(modify_response.data)
+        set_submit_loading(false)
         if (modify_response.data.status_code.toString() === "1") {
-
+            set_open_toastify(true)
         }
     }
 
@@ -144,7 +147,7 @@ export default function ProfileForm({set_has_token}) {
                         </div>
                         <div className="profile-form__form-item">
                             <div className="profile-form__form-submit-btn" onClick={modify_info_handler}>
-                                Lưu
+                                {submit_loading ? <CircularProgress color="inherit" style={{padding: "8px"}}/> : "Lưu"}
                             </div>
                         </div>
                     </div>

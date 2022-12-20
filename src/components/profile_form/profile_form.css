@@ -1,6 +1,7 @@
 .profile-form__title {
     font-size: 30px;
     font-weight: bold;
+    user-select: none;
 }
 .profile-form__row:first-child {
     margin-bottom: 20px;
@@ -21,6 +22,7 @@
 .profile-form__form-label {
     margin-right: 30px;
     color: var(--text-color-5);
+    user-select: none;
 }
 .profile-form__form-input {
     width: 75%;
@@ -43,6 +45,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 12px;
+    user-select: none;
 }
 .profile-form__avt-img {
     width: 65%;
