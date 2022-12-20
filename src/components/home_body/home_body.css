@@ -39,24 +39,6 @@
     justify-content: space-between;
     align-items: center;
 }
-.home-body__seller-label {
-    height: 60px;
-    border-radius: 60px;
-    overflow: hidden;
-}
-.home-body__seller-label-wrapper {
-    padding: 0 16px 0 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background-color-2);
-    height: 100%;
-}
-.home-body__seller-avt {
-    height: 70%;
-    border-radius: 70%;
-    margin-right: 12px;
-}
 .home-body__add-product-btn {
     background-color: var(--blue-primary-color);
     height: 40px;

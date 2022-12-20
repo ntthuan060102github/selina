@@ -6,6 +6,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import AddProductPopup from "../add_product_popup/AddProductPopup"
+import ShopTag from "../shop_tag/ShopTag"
 
 export default function HomeBody({set_has_token}) {
     const [active_categories_nav, set_active_categories_nav] = useState(false)
@@ -99,18 +100,7 @@ export default function HomeBody({set_has_token}) {
             <div className="home-body__seller-area">
                 {
                     active_shop_label
-                    ? <div className="home-body__seller-label">
-                        <div className="home-body__seller-label-wrapper">
-                            <img 
-                                src={user_data?.avatar_url || "/images/default_avt.png"}
-                                alt="" 
-                                className="home-body__seller-avt" 
-                            />
-                            <div className="home-body__seller-name">
-                                Trong Thuan
-                            </div>
-                        </div>
-                    </div>
+                    ? <ShopTag user={user_data}/>
                     : <></>
                 }
                 {

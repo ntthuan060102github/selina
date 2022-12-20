@@ -3,6 +3,7 @@ import ForgotPassword from "./pages/forgot_password/ForgotPassword"
 import Home from "./pages/home/Home"
 import Search from "./pages/search/Search"
 import BookDetail from "./pages/book_detail/BookDetail"
+import UserCart from "./pages/user_cart/UserCart"
 import "./base.css"
 
 import {
@@ -24,44 +25,61 @@ function App() {
     <Router>
       <Routes>
         <Route 
-          path="/" 
-          element={
-            has_token 
-            ? <Home set_has_token={set_has_token}/>
-            : <Navigate to="/authorization"/>
-          }
+            path="/" 
+            element={
+                has_token 
+                ? <Home set_has_token={set_has_token}/>
+                : <Navigate to="/authorization"/>
+            }
         />
         <Route 
-          path="/book/:book_id" 
-          element={
-            has_token 
-            ? <BookDetail set_has_token={set_has_token}/>
-            : <Navigate to="/authorization"/>
-          }
+            path="/book/:book_id" 
+            element={
+                has_token 
+                ? <BookDetail set_has_token={set_has_token}/>
+                : <Navigate to="/authorization"/>
+            }
         />
         <Route 
+<<<<<<< HEAD
+            path="/" 
+            element={
+                has_token 
+                ? <Home set_has_token={set_has_token}/>
+                : <Navigate to="/authorization"/>
+            }
+=======
           path="/search" 
           element={
             has_token 
             ? <Search set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
+>>>>>>> b6707ded72bbab4f3adf9bdc10abafe700c6b9ea
         />
         <Route 
-          path="/authorization" 
-          element={
-            has_token 
-            ? <Navigate to="/"/>
-            : <UnAuthorization set_has_token={set_has_token}/>
-          }
+            path="/authorization" 
+            element={
+                has_token 
+                ? <Navigate to="/"/>
+                : <UnAuthorization set_has_token={set_has_token}/>
+            }
         />
         <Route 
-          path="/forgot-password" 
-          element={
-            has_token 
-            ? <Navigate to="/"/>
-            : <ForgotPassword/>
-          }
+            path="/forgot-password" 
+            element={
+                has_token 
+                ? <Navigate to="/"/>
+                : <ForgotPassword/>
+            }
+        />
+        <Route
+            path="/cart"
+            element={
+                has_token
+                ? <UserCart set_has_token={set_has_token}/>
+                : <Navigate to="/authorization"/>
+            }
         />
       </Routes>
     </Router>

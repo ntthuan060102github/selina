@@ -6,7 +6,7 @@ import "../others/css/form.css"
 import axios from "axios"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Login({set_has_token}) {
     const [form_error, set_form_error] = useState(false)
@@ -73,7 +73,7 @@ export default function Login({set_has_token}) {
                 Password
             </label>
             <input 
-                type="email" 
+                type="password" 
                 className="form__input" 
                 id="form__login-password-input"
                 placeholder="Enter your Password"  
@@ -83,7 +83,6 @@ export default function Login({set_has_token}) {
                     set_form_message("")
                 }}
             />
-            <Link to="/forgot-password" className="form__nav-to-forgot-password">Quên mật khẩu?</Link>
             <div className="form__message">{form_message}</div>
             <div className="form__submit-btn" onClick={submit_form}>Login</div>
         </div>
