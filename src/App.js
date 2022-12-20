@@ -3,6 +3,8 @@ import ForgotPassword from "./pages/forgot_password/ForgotPassword"
 import Home from "./pages/home/Home"
 import Search from "./pages/search/Search"
 import BookDetail from "./pages/book_detail/BookDetail"
+import Profile from "./pages/profile/Profile"
+import UserCart from "./pages/user_cart/UserCart"
 import "./base.css"
 
 import {
@@ -24,12 +26,12 @@ function App() {
     <Router>
       <Routes>
         <Route 
-          path="/" 
-          element={
-            has_token 
-            ? <Home set_has_token={set_has_token}/>
-            : <Navigate to="/authorization"/>
-          }
+            path="/" 
+            element={
+                has_token 
+                ? <Home set_has_token={set_has_token}/>
+                : <Navigate to="/authorization"/>
+            }
         />
         <Route 
           path="/book/:book_id" 
@@ -43,7 +45,15 @@ function App() {
           path="/search" 
           element={
             has_token 
-            ? <Search set_has_token={set_has_token}/>
+            ? <Profile set_has_token={set_has_token}/>
+            : <Navigate to="/authorization"/>
+          }
+        />
+        <Route 
+          path="/profile/:user_id" 
+          element={
+            has_token 
+            ? <Profile set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />
@@ -56,12 +66,20 @@ function App() {
           }
         />
         <Route 
-          path="/forgot-password" 
-          element={
-            has_token 
-            ? <Navigate to="/"/>
-            : <ForgotPassword/>
-          }
+            path="/forgot-password" 
+            element={
+                has_token 
+                ? <Navigate to="/"/>
+                : <ForgotPassword/>
+            }
+        />
+        <Route
+            path="/cart"
+            element={
+              has_token
+              ? <UserCart set_has_token={set_has_token}/>
+              : <Navigate to="/authorization"/>
+            }
         />
       </Routes>
     </Router>

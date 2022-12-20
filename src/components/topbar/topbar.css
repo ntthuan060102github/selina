@@ -93,5 +93,6 @@
     border-radius: 50%;
 }
 .top-bar__user-name {
+    user-select: none;
     color: var(--white-color);
 }

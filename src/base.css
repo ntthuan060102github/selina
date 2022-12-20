@@ -11,7 +11,7 @@
     --text-color-2: #ACACAC;
     --text-color-3: #fff;
     --text-color-4: #b0b1b3;
-    --text-color-5: #666666
+    --text-color-5: #666666;
     --text-color-highlight: #32a4ea;
     --primary-text-color: #b8a07c;
     --primary-color: #b8a07c;
@@ -31,9 +31,11 @@
     --background-color-2: #cbcb7c9c;
     --background-color-3: #dedede;
     --background-color-4: #373737;
+    --background-color-5: #E9E9E9;
     --background-color-highlight-4: #202020;
     --white-background-color: #fff;
     --border-color-1: #ccc;
+    --border-color-2: #bcbaba;
     --border-highlight-color-1: #353535;
 }
 body {

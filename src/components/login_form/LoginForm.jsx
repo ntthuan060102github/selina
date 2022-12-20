@@ -73,7 +73,7 @@ export default function Login({set_has_token}) {
                 Password
             </label>
             <input 
-                type="email" 
+                type="password" 
                 className="form__input" 
                 id="form__login-password-input"
                 placeholder="Enter your Password"  
