@@ -40,10 +40,10 @@ function App() {
           }
         />
         <Route 
-          path="/" 
+          path="/search" 
           element={
             has_token 
-            ? <Home set_has_token={set_has_token}/>
+            ? <Search set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />

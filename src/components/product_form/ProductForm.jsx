@@ -83,7 +83,84 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
     }
 
     const submit_modify_handler = async (e) => {
-        console.log(e)
+        const form_data = new FormData()
+
+        const name = name_dom?.current?.value
+        const author = author_dom?.current?.value
+        const desc = desc_dom?.current?.value
+        const stock = stock_dom?.current?.value
+        const price = price_dom?.current?.value
+
+        if (!stock || Number.isNaN(stock) || !Number.isInteger(Number(stock))) {
+            set_form_message("Stock la so nguyen")
+            return
+        }
+        if (!price || Number.isNaN(price) || !Number.isInteger(Number(price))) {
+            set_form_message("Price la so nguyen")
+            return
+        }
+        
+        form_data.append("name", name)
+        form_data.append("author", author)
+        form_data.append("desc", desc)
+        form_data.append("price", parseInt(price))
+        form_data.append("quantity", parseInt(stock))
+        form_data.append("book_id", parseInt(book_data.product_id))
+
+        if (preview_image) {
+            form_data.append("image", preview_image)
+        }
+
+        const post_res = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/modify-product-info`,
+            form_data,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+        
+        if (post_res?.data?.status_code?.toString() !== '1') {
+            set_form_message("Lỗi hệ thống!")
+            return
+        }
+        else {
+            set_message_status(true)
+            set_form_message("Thành công!")
+            return
+        }
+    }
+    
+    const remove_product_handler = async (e) => {
+        const remove_res = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/remove-product`,
+            {
+                book_id: book_data.product_id
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+        if (remove_res.data.status_code.toString() === "1") {
+            return navigate("/")
+        }
     }
 
     useEffect(() => {
@@ -235,23 +312,50 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                             ? () => set_open(false)
                             : (
                                 seller_delete_btn
-                                ? () => console.log("delete")
+                                ? remove_product_handler
                                 : () => console.log("delete")
                             )
                         }
                     > 
-                        <div className="product-form__btn-icon">
-                            <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect 
-                                    width="30" 
-                                    height="30" 
-                                    className="product-form__btn-rect-tag--cancel"
-                                />
-                                <path d="M22.5 7.5L7.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M7.5 7.5L22.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                        <div className="product-form__btn-label">Hủy bỏ</div>
+                        {
+                            seller_cancel_add_btn
+                            ? (
+                                <>
+                                    <div className="product-form__btn-icon">
+                                        <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect 
+                                                width="30" 
+                                                height="30" 
+                                                className="product-form__btn-rect-tag--cancel"
+                                            />
+                                            <path d="M22.5 7.5L7.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M7.5 7.5L22.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div className="product-form__btn-label">Hủy bỏ</div>
+                                </>
+                            )
+                            : (
+                                seller_delete_btn 
+                                ? (
+                                    <>
+                                        <div className="product-form__btn-icon">
+                                            <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect 
+                                                    width="30" 
+                                                    height="30" 
+                                                    className="product-form__btn-rect-tag--cancel"
+                                                />
+                                                <path d="M22.5 7.5L7.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                                <path d="M7.5 7.5L22.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div className="product-form__btn-label">Xóa sản phẩm</div>
+                                    </>
+                                )
+                                : <></>
+                            )
+                    }
                     </div>
                 </div>
             </div>
