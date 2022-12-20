@@ -1,5 +1,4 @@
 import TopBar from "../topbar/Topbar"
-import Footer from "../footer/Footer"
 import "./main_layout.css"
 
 export default function MainLayout({body}) {
@@ -13,7 +12,7 @@ export default function MainLayout({body}) {
                 {body}
             </div>
             <div className="main-layout__footer">
-                <Footer/>
+
             </div>
         </div>
     )
