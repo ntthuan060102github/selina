@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 export default function SecondaryLayout({set_has_token, nav, body}) {
     const navigation = useNavigate()
+    
     const logout_handler = async () => {
         const logout_res = await axios.get(
             `${SELINA_API_SERVICE_INFOS.auth[APP_ENV].domain}/logout`,

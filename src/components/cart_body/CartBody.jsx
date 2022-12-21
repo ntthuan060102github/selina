@@ -2,7 +2,6 @@ import "./cart_body.css"
 import ShopSection from "../shop_section/ShopSection"
 
 export default function CartBody({set_has_token}) {
-
     return (
         <div className="cart-body">
             <ShopSection/>

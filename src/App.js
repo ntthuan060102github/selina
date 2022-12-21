@@ -5,6 +5,7 @@ import Search from "./pages/search/Search"
 import BookDetail from "./pages/book_detail/BookDetail"
 import Profile from "./pages/profile/Profile"
 import UserCart from "./pages/user_cart/UserCart"
+import Order from "./pages/order/Order"
 import "./base.css"
 
 import {
@@ -45,7 +46,7 @@ function App() {
           path="/search" 
           element={
             has_token 
-            ? <Profile set_has_token={set_has_token}/>
+            ? <Search set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />
@@ -54,6 +55,14 @@ function App() {
           element={
             has_token 
             ? <Profile set_has_token={set_has_token}/>
+            : <Navigate to="/authorization"/>
+          }
+        />
+        <Route 
+          path="/order/:user_id" 
+          element={
+            has_token 
+            ? <Order set_has_token={set_has_token}/>
             : <Navigate to="/authorization"/>
           }
         />

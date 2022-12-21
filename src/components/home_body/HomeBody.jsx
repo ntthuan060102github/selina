@@ -38,6 +38,7 @@ export default function HomeBody({set_has_token}) {
             const user_data = response?.data?.data
             
             set_user_data(user_data)
+            sessionStorage.setItem("user_info", JSON.stringify(user_data))
             set_active_categories_nav(user_role === "normal_user")
             set_active_banner(user_role === "normal_user")
             set_active_shop_label(user_role === "seller")

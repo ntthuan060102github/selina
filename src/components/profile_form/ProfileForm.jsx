@@ -64,7 +64,7 @@ export default function ProfileForm({set_has_token}) {
         const full_name = full_name_dom.current.value
         const phone_num = phone_dom.current.value
         const address = address_dom.current.value
-        const gender = false
+        const gender = genre_dom.current.checked
         const file = new_avt_img
 
         const form_data = new FormData()
@@ -139,7 +139,7 @@ export default function ProfileForm({set_has_token}) {
                             </div>
                             <div className="profile-form__form-item profile-form__form-item--radio">
                                 <div className="profile-form__radio-area">
-                                    <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-male-id" name="profile-form__genre-id" />
+                                    <input ref={genre_dom} type="radio" className="profile-form__form-input-radio" id="profile-form__genre-male-id" name="profile-form__genre-id" />
                                     <label htmlFor="profile-form__genre-male-id" className="profile-form__radio-label">Nam</label>
                                     <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id"name="profile-form__genre-id" />
                                     <label htmlFor="profile-form__genre-female-id" className="profile-form__radio-label">Nữ</label>
