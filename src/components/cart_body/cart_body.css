@@ -1,6 +1,13 @@
 .cart-body {
+    min-height: 75vh;
     width: 100%;
     padding: 30px 40px;
+}
+.cart-body--no-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
 }
 .cart-body__receipt {
     text-align: right;

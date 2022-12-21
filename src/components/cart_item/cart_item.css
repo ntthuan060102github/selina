@@ -10,6 +10,9 @@
     display: flex;
     align-items: center;
 }
+.cart-item__group:first-of-type {
+    flex: 1 1 60%;
+}
 .cart-item__img, 
 .cart-item__img img {
     height: 110px;

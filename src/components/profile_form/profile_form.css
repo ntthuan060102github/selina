@@ -43,8 +43,11 @@
     height: 40px;
     margin: 8px 0;
 }
+.profile-form__form-input-radio {
+    margin-right: 8px;
+}
 .profile-form__radio-label {
-    margin-right: 12px;
+    margin-right: 16px;
 }
 .profile-form__avt-area {
     display: flex;
