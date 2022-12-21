@@ -7,6 +7,38 @@ import { APP_ENV } from "../../configs/app_config"
 import { useNavigate } from "react-router-dom"
 
 export default function CartBody({set_has_token}) {
+    const [shops, set_shops] = useState([])
+    const [total_price, set_total_price] = useState(0)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const get_cart_info = async () => {
+            const response = await axios.get(
+                `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/get-cart-info`,
+                {
+                    headers: {
+                        Authorization: localStorage.getItem("access_token")
+                    }
+                }
+            ).then(response => {
+                if (response?.data?.status_code?.toString() === '2') {
+                    localStorage.removeItem("access_token")
+                    set_has_token(false)
+                    return navigate("/authorization")
+                }
+                return response
+            })
+            set_shops(response?.data?.data)
+        }
+        get_cart_info()
+    }, [])
+
+    let is_no_item = true
+    if (shops.length === 0 || !shops) {
+        is_no_item = true
+    } else {
+        is_no_item = false
+    }
 
     return (
         <div className="cart-body">
