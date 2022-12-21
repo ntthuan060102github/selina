@@ -1,18 +1,20 @@
 import "./cart_item.css"
 import { useState, useEffect } from "react"
 
-export default function CartItem() {
-    const [quantity, set_quantity] = useState(1)
-    const [price, set_price] = useState(100000)
-    const [total, set_total] = useState(100000)
+export default function CartItem({ book_data }) {
+    const price = book_data?.price
+    const [quantity, set_quantity] = useState(book_data?.quantity)
+    const [total, set_total] = useState(book_data?.total_price)
 
     const quantity_decrement_handler = () => {
         if (quantity <= 1) return
         set_quantity(quantity - 1)
+        return
     }
 
     const quantity_increment_handler = () => {
         set_quantity(quantity + 1)
+        return
     }
 
     useEffect(() => {
@@ -23,11 +25,11 @@ export default function CartItem() {
         <div className="cart-item">
             <div className="cart-item__group">
                 <div className="cart-item__img">
-                    <img src="/images/default_avt.png" alt="" />
+                    <img src={book_data?.image} alt="" />
                 </div>
                 <div className="cart-item__details">
-                    <h4 className="cart-item__name">Tên sách</h4>
-                    <div className="cart-item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora praesentium vel quibusdam quisquam dolor culpa autem recusandae vero ipsum? Consequatur aliquam non necessitatibus eligendi odit nulla veritatis. Praesentium, consectetur distinctio?</div>
+                    <h4 className="cart-item__name">{book_data?.name}</h4>
+                    <div className="cart-item__description">{book_data?.desc}</div>
                 </div>
             </div>
             <div className="cart-item__group">

@@ -1,7 +1,6 @@
 import "./book_card.css"
 import { Link } from "react-router-dom"
 
-
 export default function BookCard({book}) {
 
     return (
