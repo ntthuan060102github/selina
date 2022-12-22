@@ -1,32 +1,126 @@
 import "./order_info_card.css"
+import { useState } from "react"
+import { Link } from "react-router-dom"
 
-export default function OrderInfoCard() {
+export default function OrderInfoCard({order}) {
+    const [user_role, set_user_role] = useState(
+        JSON.parse(sessionStorage.getItem("user_info")).user_type
+    )
+
+    const order_status_adapter = (status) => {
+        switch (status) {
+            case "rejected":
+                return "Bị từ chối"
+            case "delivering":
+                return "Đang giao"
+            case "waiting":
+                return "Chờ xác nhận"
+            case "delivered":
+                return "Đã giao"
+            case "cancelled":
+                return "Đã hủy"
+        }
+    }
+    
     
     return (
         <div className="order-info-cart">
-            <div className="order-info-cart__row">
+            <Link to="/" className="order-info-cart__row order-info-cart__row--p">
+                <img src={order.rest_user.avatar_url || "/images/default_avt.png"} alt="" className="order-info-cart__shop-img" />
                 <div className="order-info-cart__shop-name">
-                    Nguyen Trong Thuan
+                    <b>{order.rest_user.full_name}</b>
                 </div>
+            </Link>
+            <div className="order-info-cart__row order-info-cart__row--p">
+                {
+                    order.books.map((book, idx) => (
+                        <div className="order-info-cart__book" key={idx}>
+                            <Link to={`/book/${book.book_id}`} className="order-info-cart__book-img-wrapper">
+                                <img src={book.image} className="order-info-cart__book-img" />
+                            </Link>
+                            <div className="order-info-cart__book--30">
+                                <div className="order-info-cart__book-name">
+                                    {book.name}
+                                </div>
+                                <div className="order-info-cart__book-quantity">
+                                    x{book.quantity}
+                                </div>
+                            </div>
+                            <div className="order-info-cart__book-desc">
+                                {book.desc}
+                            </div>
+                            <div className="order-info-cart__book-price">
+                                {book.price}đ
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
-            <div className="order-info-cart__row">
-                
-            </div>
-            <div className="order-info-cart__row">
-                <div className="order-info-cart__order-status">
-                    <div className="order-info-cart__order-status-label"></div>
-                    <div className="order-info-cart__order-status-result"></div>
-                </div>
-                <div className="order-info-cart__order-price">
-                    Tổng cộng: 
-                    <div className="order-info-cart__order-price-num">
-                        20000
+            {
+                user_role === "normal_user"
+                ? <div className="order-info-cart__row order-info-cart__row--border order-info-cart__row--p order-info-cart__row--df">
+                    <div className="order-info-cart__order-status">
+                        <div className="order-info-cart__order-status-label">Trạng thái đơn hàng: </div>
+                        <div className="order-info-cart__order-status-result">{order_status_adapter(order.status)}</div>
                     </div>
-                    đ
+                    <div className="order-info-cart__order-price">
+                        Tổng cộng: 
+                        <div className="order-info-cart__order-price-num">
+                            {order.total_price + "đ"}
+                        </div>
+                    </div>
                 </div>
-            </div>
+                : <></>
+            }
             <div className="order-info-cart__row">
-                
+                {
+                    user_role === "seller"
+                    ? <div className="order-info-cart__order-price order-info-cart__order-price--border">
+                        Tổng cộng: 
+                        <div className="order-info-cart__order-price-num">
+                            {order.total_price + "đ"}
+                        </div>
+                    </div>
+                    : <></>
+                }
+            </div>
+            <div className="order-info-cart__row order-info-cart__row--p">
+                {
+                    user_role === "seller"
+                    ? <div className="order-info-cart__cus-info">
+                        <div className="order-info-cart__cus-info-left">
+                            <div className="order-info-cart__cus-info-left-item order-info-cart__cus-name">
+                                <b>Tên khách hàng</b>: {order.rest_user.full_name}
+                            </div>
+                            <div className="order-info-cart__cus-info-left-item order-info-cart__cus-phone">
+                                <b>Số điện thoại khách hàng</b>: {order.phone_number}
+                            </div>
+                            <div className="order-info-cart__cus-info-left-item order-info-cart__cus-address">
+                                <b>Địa chỉ giao hàng</b>: {order.delivered_to}
+                            </div>
+                        </div>
+                        <div className="order-info-cart__cus-info-right">
+                            <div className="order-info-cart__submit-label">
+                                Xác nhận đơn hàng?
+                            </div>
+                            <div className="order-info-cart__btn-area">
+                                <div className="order-info-cart__submit-btn">
+                                    <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="11.25" stroke="white"/>
+                                        <path d="M7 12L10.75 15.75L17 8.25" stroke="white"/>
+                                    </svg>
+                                </div>
+                                <div className="order-info-cart__reject-btn">
+                                    <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.5 0.5L0.5 15.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M0.5 0.5L15.5 15.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    : <></>
+                }
             </div>
         </div>
     )

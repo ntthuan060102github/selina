@@ -1,0 +1,61 @@
+.order-info-cart {
+    width: 100%;
+    border-radius: 28px;
+    border: 1px solid var(--border-color-1);
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+.order-info-cart__row--p {
+    padding: 0 40px;
+}
+.order-info-cart__book {
+    height: 150px;
+    display: flex;
+    margin: 12px 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color-1);
+}
+.order-info-cart__book-img-wrapper {
+    height: 100%;
+    flex: 1;
+    margin-right: 30px;
+}
+.order-info-cart__book-img {
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    height: 100%;
+}
+.order-info-cart__book--30 {
+    flex: 1.5;
+    width: 25%;
+}
+.order-info-cart__book-desc{
+    flex: 2;
+    width: 30%;
+}
+.order-info-cart__book-price {
+    flex: 1;
+    text-align: right;
+}
+.order-info-cart__order-status {
+    display: flex;
+    font-weight: bold;
+}
+.order-info-cart__order-status-result {
+    margin-left: 8px;
+}
+.order-info-cart__row--df {
+    display: flex;
+    justify-content: space-between;
+}
+.order-info-cart__order-price {
+    display: flex;
+    font-weight: bold;
+}
+.order-info-cart__order-price-num {
+    margin-left: 8px;
+    color: var(--text-color-6);
+}
+.order-info-cart__row--border {
+    border-top: 1px solid var(--border-color-1);
+    padding-top: 20px;
+}

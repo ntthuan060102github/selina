@@ -50,6 +50,7 @@ export default function ProfileForm({set_has_token}) {
             email_dom.current.value = user_data.email || ""
             phone_dom.current.value = user_data.phone_num || ""
             address_dom.current.value = user_data.address || ""
+            genre_dom.current.checked = user_data.genre
             set_preview_new_avt(user_data.avatar_url)
         }
         get_user_data()
