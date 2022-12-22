@@ -4,9 +4,13 @@ import axios from "axios"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 export default function SecondaryLayout({set_has_token, nav, body}) {
     const navigation = useNavigate()
+    const [user_data, set_user_data] = useState(
+        JSON.parse(sessionStorage.getItem("user_info"))
+    )
     
     const logout_handler = async () => {
         const logout_res = await axios.get(
@@ -31,10 +35,10 @@ export default function SecondaryLayout({set_has_token, nav, body}) {
                     <div className="secondary-layout__sub-area-wrapper">
                         <div className="secondary-layout__sub-area-row">
                             <div className="secondary-layout___user-avt">
-                                <img src="/images/default_avt.png" className="secondary-layout___user-avt-img" />
+                                <img src={user_data.avatar_url || "/images/default_avt.png"} className="secondary-layout___user-avt-img" />
                             </div>
                             <div className="secondary-layout___user-name">
-                                Nguyen Trong Thuan
+                                {user_data.full_name}
                             </div>
                         </div>
                         <div className="secondary-layout__sub-area-row">

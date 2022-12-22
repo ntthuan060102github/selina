@@ -18,6 +18,7 @@ import { useEffect, useState } from "react"
 
 function App() {
   const [has_token, set_has_token] = useState("")
+  const [owner_role, set_owner_role] = useState("")
 
   useEffect(() => {
     set_has_token(localStorage.getItem("access_token"))
@@ -30,7 +31,7 @@ function App() {
             path="/" 
             element={
                 has_token 
-                ? <Home set_has_token={set_has_token}/>
+                ? <Home set_has_token={set_has_token} owner_role={owner_role}/>
                 : <Navigate to="/authorization"/>
             }
         />
@@ -71,7 +72,7 @@ function App() {
           element={
             has_token 
             ? <Navigate to="/"/>
-            : <UnAuthorization set_has_token={set_has_token}/>
+            : <UnAuthorization set_has_token={set_has_token} set_owner_role={set_owner_role}/>
           }
         />
         <Route 

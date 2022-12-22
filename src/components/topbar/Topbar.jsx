@@ -1,8 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate, Link } from "react-router-dom"
 import "./topbar.css"
 
 export default function TopBar() {
+    const [user_data, set_user_data] = useState(
+        JSON.parse(sessionStorage.getItem("user_info"))
+    )
     const keyword = useRef()
     const navigate = useNavigate()
     const submit_search_handler = (e) => {
@@ -52,12 +55,11 @@ export default function TopBar() {
                 <div className="top-bar__item">
                     <div className="top-bar__user-area">
                         <div className="top-bar__user-name">
-                            Hello, <b>Thuan</b>
+                            Hello, <b>{user_data.full_name}</b>
                         </div>
                         <Link to="/profile/me" className="top-bar__user-avatar">
                             <img 
-                                src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/231972157_578026619887715_3512680344637478876_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=xcYfmUod3psAX-9Imm7&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfCRBPlmEjlYXsoUGGoPCf0my4PP4dzVwaStUaL924WLjg&oe=639702FE" 
-                                alt="" 
+                                src={user_data.avatar_url || "/images/default_avt.png"} 
                                 className="top-bar__user-avatar-img" 
                             />
                         </Link>

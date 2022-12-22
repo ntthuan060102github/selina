@@ -8,7 +8,7 @@ import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
 import { useNavigate, Link } from "react-router-dom"
 
-export default function Login({set_has_token}) {
+export default function Login({set_has_token, set_owner_role}) {
     const [form_error, set_form_error] = useState(false)
     const [form_message, set_form_message] = useState("")
     const user_email = useRef()
@@ -42,6 +42,8 @@ export default function Login({set_has_token}) {
         localStorage.setItem("access_token", login_result.data.access_token)
         localStorage.setItem("refresh_token", login_result.data.refresh_token)
         set_has_token(login_result.data.access_token)
+        set_owner_role(login_result.data.user_role)
+        sessionStorage.setItem("user_info", JSON.stringify(login_result.data.user_data))
         navigate("/")
         return
     }
