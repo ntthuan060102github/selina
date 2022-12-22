@@ -8,7 +8,7 @@ import { useNavigate, Link } from "react-router-dom"
 import AddProductPopup from "../add_product_popup/AddProductPopup"
 import ShopTag from "../shop_tag/ShopTag"
 
-export default function HomeBody({set_has_token}) {
+export default function HomeBody({set_has_token, owner_role}) {
     const [active_categories_nav, set_active_categories_nav] = useState(false)
     const [active_banner, set_active_banner] = useState(false)
     const [active_shop_label, set_active_shop_label] = useState(false)
@@ -18,27 +18,10 @@ export default function HomeBody({set_has_token}) {
 
     useEffect(() => {
         const get_my_info = async () => {
-            const response = await axios.get(
-                `${SELINA_API_SERVICE_INFOS.auth[APP_ENV].domain}\\ping`,
-                {
-                    headers: {
-                        Authorization: localStorage.getItem("access_token")
-                    }
-                }
-            ).then((response) => {
-                if (response?.data?.status_code?.toString() === '2') {
-                    localStorage.removeItem("access_token")
-                    set_has_token(false)
-                    return navigate("/authorization")
-                }
-                return response
-            })
+            const user_data = JSON.parse(sessionStorage.getItem("user_info"))
+            const user_role = user_data.user_type
 
-            const user_role = response?.data?.role
-            const user_data = response?.data?.data
-            
             set_user_data(user_data)
-            sessionStorage.setItem("user_info", JSON.stringify(user_data))
             set_active_categories_nav(user_role === "normal_user")
             set_active_banner(user_role === "normal_user")
             set_active_shop_label(user_role === "seller")

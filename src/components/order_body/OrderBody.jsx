@@ -33,7 +33,6 @@ export default function OrderBody({set_has_token}) {
             const orders = orders_response.data.data.data
             set_orders_data(orders)
             set_loading(false)
-            console.log(orders)
         }
         get_orders()
     }, [])
@@ -46,7 +45,7 @@ export default function OrderBody({set_has_token}) {
                 </div>
                 {
                     orders_data 
-                    ? orders_data.map((order, idx) => (<OrderInfoCard key={idx} order={order}/>)) 
+                    ? orders_data.map((order, idx) => (<OrderInfoCard key={idx} order={order} set_has_token={set_has_token}/>)) 
                     : <></>
                 }
             </div>
