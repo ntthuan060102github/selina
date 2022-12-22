@@ -6,6 +6,7 @@ import BookDetail from "./pages/book_detail/BookDetail"
 import Profile from "./pages/profile/Profile"
 import UserCart from "./pages/user_cart/UserCart"
 import Order from "./pages/order/Order"
+import Checkout from "./pages/checkout/Checkout"
 import "./base.css"
 
 import {
@@ -88,6 +89,14 @@ function App() {
               has_token
               ? <UserCart set_has_token={set_has_token}/>
               : <Navigate to="/authorization"/>
+            }
+        />
+        <Route
+            path="/checkout/:cart_id"
+            element={
+                has_token
+                ? <Checkout set_has_token={set_has_token}/>
+                : <Navigate to="/authorization"/>
             }
         />
       </Routes>

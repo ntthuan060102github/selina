@@ -55,5 +55,6 @@
 .quantity-controller--decrement,
 .quantity-controller--increment {
     color: var(--text-color-2);
+    user-select: none;
     cursor: pointer;
 }

@@ -1,0 +1,5 @@
+.checkout-info-card {
+    height: 600px;
+    border-radius: 20px;
+    border: 1px solid var(--border-highlight-color-1);
+}

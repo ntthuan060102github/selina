@@ -11,7 +11,7 @@ export default function ShopTag({user}) {
                     className="shop-tag__avatar" 
                 />
                 <div className="shop-tag__name">
-                    Trong Thuan
+                    {user?.full_name}
                 </div>
             </div>
         </div>

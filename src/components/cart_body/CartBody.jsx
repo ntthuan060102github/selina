@@ -4,11 +4,12 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 export default function CartBody({set_has_token}) {
     const [shops, set_shops] = useState([])
     const [total_price, set_total_price] = useState(0)
+    const [shop_group_id, set_shop_group_id] = useState(0)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -54,14 +55,19 @@ export default function CartBody({set_has_token}) {
                 : (
                     <>
                     {
-                        shops.map(shop => <ShopSection shop_data={shop} set_total_price={set_total_price} key={shop.group_id}/>)
+                        shops.map(shop => <ShopSection 
+                            shop_data={shop}
+                            set_shop_group_id={set_shop_group_id}
+                            set_total_price={set_total_price}
+                            key={shop.group_id}
+                        />)
                     }
                     <div className="cart-body__receipt">
                         <div className="cart-body__receipt-content">
                             Tổng cộng:
                             <span className="cart-body__total"><b>{total_price}đ</b></span>
                         </div>
-                        <div className="cart-body__payment-btn">
+                        <Link className="cart-body__payment-btn" to={`/checkout/${shop_group_id}`}>
                             <div className="cart-body__payment-btn-content">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 4H5.62563C6.193 4 6.47669 4 6.70214 4.12433C6.79511 4.17561 6.87933 4.24136 6.95162 4.31912C7.12692 4.50769 7.19573 4.7829 7.33333 5.33333L7.51493 6.05972C7.616 6.46402 7.66654 6.66617 7.74455 6.83576C8.01534 7.42449 8.5546 7.84553 9.19144 7.96546C9.37488 8 9.58326 8 10 8V8" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"/>
@@ -72,7 +78,7 @@ export default function CartBody({set_has_token}) {
                                 </svg>
                                 Thanh toán
                             </div>
-                        </div>
+                        </Link>
                     </div>
                     </>
                 )
