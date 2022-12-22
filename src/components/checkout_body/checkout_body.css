@@ -41,6 +41,10 @@
     height: var(--height-btn);
     border-radius: var(--height-btn);
     padding-right: 16px;
+    user-select: none;
+}
+.checkout-body__checkout-btn:hover {
+    background-color: var(--blue-primary-highlight-color);
 }
 .checkout-body__checkout-btn-content {
     display: flex;

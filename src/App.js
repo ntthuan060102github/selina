@@ -93,7 +93,7 @@ function App() {
             }
         />
         <Route
-            path="/checkout/:cart_id"
+            path="/checkout/:checkout_id"
             element={
                 has_token
                 ? <Checkout set_has_token={set_has_token}/>

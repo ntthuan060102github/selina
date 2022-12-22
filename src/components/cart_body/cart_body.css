@@ -27,6 +27,12 @@
     height: var(--height-btn);
     border-radius: var(--height-btn);
     width: 144px;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.cart-body__payment-btn:hover {
+    background-color: var(--blue-primary-highlight-color);
 }
 .cart-body__payment-btn-content {
     display: flex;
