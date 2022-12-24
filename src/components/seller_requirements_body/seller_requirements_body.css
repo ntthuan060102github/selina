@@ -8,3 +8,11 @@
 .seller-requirements-body__books {
     width: 100%;
 }
+.seller-requirements-body__empty {
+    font-size: 26px;
+    text-align: center;
+    padding: 4px;
+}
+.seller-requirements-body__empty-icon {
+    margin-top: 8px;
+}
