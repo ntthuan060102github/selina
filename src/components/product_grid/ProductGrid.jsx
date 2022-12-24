@@ -7,11 +7,14 @@ import {
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { Pagination } from "@mui/material"
+import CircularProgress from '@mui/material/CircularProgress'
+import SearchOffIcon from '@mui/icons-material/SearchOff'
 
 export default function ProductGrid({api, set_has_token}) {
     const [products, set_products] = useState([])
     const [curr_page, set_curr_page] = useState(1)
     const [num_pages, set_num_pages] = useState(1)
+    const [loading, set_loading] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -34,6 +37,7 @@ export default function ProductGrid({api, set_has_token}) {
             set_products(response?.data?.data?.docs)
             set_num_pages(response?.data?.data?.pages)
             set_curr_page(response?.data?.data?.page || 1)
+            set_loading(false)
         }
         get_data(api)
     }, [curr_page])
@@ -44,18 +48,35 @@ export default function ProductGrid({api, set_has_token}) {
 
     return (
         <div className="product-grid">
-            <div className="product-grid__grid">
-                {
-                    products.map((product, idx) => <BookCard book={product} key={idx}/>)
-                }
-            </div>
-            <div className="product-grid__pagination">
-                <Pagination 
-                    count={num_pages} 
-                    variant="outlined"
-                    onChange={click_pagination_bar}
-                />
-            </div>
+            {
+                products.length
+                ? <>
+                    <div className="product-grid__grid">
+                        {
+                            products.map((product, idx) => <BookCard book={product} key={idx}/>)
+                        }
+                    </div>
+                    <div className="product-grid__pagination">
+                        <Pagination 
+                            count={num_pages} 
+                            variant="outlined"
+                            onChange={click_pagination_bar}
+                        />
+                    </div>
+                </>
+                : (
+                    !loading 
+                    ? <div className="product-grid__empty">
+                        <div className="product-grid__empty-message">
+                            Không tìm thấy sản phẩm nào!
+                        </div>
+                        <div className="product-grid__empty-icon">
+                            <SearchOffIcon fontSize="large"/>
+                        </div>
+                    </div>
+                    : <CircularProgress/>
+                )
+            }
         </div>
     )
 }

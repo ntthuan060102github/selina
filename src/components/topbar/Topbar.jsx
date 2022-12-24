@@ -26,9 +26,7 @@ export default function TopBar() {
                         <img src="/images/logo.png" alt="" className="top-bar__logo-img" />
                     </Link>
                 </div>
-                {
-                    user_data.user_type !== "admin"
-                    ? <div className="top-bar__item top-bar__item-search">
+                <div className="top-bar__item top-bar__item-search">
                     <div className="top-bar__search-area" onKeyDown={submit_search_handler}>
                         <div className="top-bar__search-left">
                             <label className="top-bar__search-label" htmlFor="top-bar__search-input">
@@ -41,11 +39,9 @@ export default function TopBar() {
                             <input ref={keyword} type="text" className="top-bar__search-input" id="top-bar__search-input" placeholder="Search"/>
                         </div>
                     </div>
-                    </div>
-                    : <></>
-                }
+                </div>
                 {
-                    user_data.user_type !== "admin"
+                    user_data.user_type === "normal_user"
                     ? <div className="top-bar__item">
                     <div className="top-bar__utility-tools">
                         <Link className="top-bar__utility-tool" to='/cart'>

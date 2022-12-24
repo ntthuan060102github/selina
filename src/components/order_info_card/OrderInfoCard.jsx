@@ -1,3 +1,4 @@
+import CircularProgress from '@mui/material/CircularProgress'
 import Stack from '@mui/material/Stack'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
@@ -8,7 +9,6 @@ import axios from "axios"
 import { APP_ENV } from "../../configs/app_config"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 const { useNavigate } = require("react-router-dom")
-
 
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -21,6 +21,7 @@ export default function OrderInfoCard({order, set_has_token}) {
         JSON.parse(sessionStorage.getItem("user_info")).user_type
     )
     const [hidden, set_hidden] = useState(false)
+    const [loading, set_loading] = useState(false)
 
     const handle_close_toastify = (event, reason) => {
         if (reason === 'clickaway') {
@@ -45,6 +46,7 @@ export default function OrderInfoCard({order, set_has_token}) {
     }
 
     const approve_an_order_handle = async () => {
+        set_loading(true)
         const response = await axios.post(
             `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/consider-an-order`,
             {
@@ -69,9 +71,11 @@ export default function OrderInfoCard({order, set_has_token}) {
             set_hidden(true)
             set_open_toastify(true)
         }
+        set_loading(false)
     }
     
     const reject_an_order_handle = async () => {
+        set_loading(true)
         const response = await axios.post(
             `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/consider-an-order`,
             {
@@ -96,6 +100,7 @@ export default function OrderInfoCard({order, set_has_token}) {
             set_open_toastify(true)
             set_hidden(true)
         }
+        set_loading(false)
     }
     
     return (
@@ -190,16 +195,24 @@ export default function OrderInfoCard({order, set_has_token}) {
                                     </div>
                                     <div className="order-info-cart__btn-area">
                                         <div className="order-info-cart__submit-btn" onClick={approve_an_order_handle}>
-                                            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="12" cy="12" r="11.25" stroke="white"/>
-                                                <path d="M7 12L10.75 15.75L17 8.25" stroke="white"/>
-                                            </svg>
+                                            {
+                                                loading
+                                                ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                                                : <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="12" cy="12" r="11.25" stroke="white"/>
+                                                    <path d="M7 12L10.75 15.75L17 8.25" stroke="white"/>
+                                                </svg>
+                                            }
                                         </div>
                                         <div className="order-info-cart__reject-btn" onClick={reject_an_order_handle}>
-                                            <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.5 0.5L0.5 15.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
-                                                <path d="M0.5 0.5L15.5 15.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
-                                            </svg>
+                                            {
+                                                loading
+                                                ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                                                : <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15.5 0.5L0.5 15.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                                    <path d="M0.5 0.5L15.5 15.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                                </svg>
+                                            }
                                         </div>
                                     </div>
                                 </div>

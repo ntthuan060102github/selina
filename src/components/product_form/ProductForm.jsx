@@ -1,9 +1,17 @@
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, forwardRef } from "react"
 import "./product_form.css"
 import axios from "axios"
 import { APP_ENV } from "../../configs/app_config"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { useNavigate } from "react-router-dom"
+import CircularProgress from '@mui/material/CircularProgress'
+import Stack from '@mui/material/Stack'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
+
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+})
 
 export default function ProductForm({set_open, set_has_token, book_data}) {
     const [preview_image, set_preview_image] = useState(null)
@@ -13,6 +21,8 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
     const [seller_cancel_add_btn, set_seller_cancel_add_btn] = useState(!Boolean(book_data))
     const [seller_submit_modify_btn, set_seller_submit_modify_btn] = useState(Boolean(book_data))
     const [seller_delete_btn, set_seller_delete_btn] = useState(Boolean(book_data))
+    const [loading, set_loading] = useState(false)
+    const [open, set_open_toastify] = useState(false)
 
     const name_dom = useRef()
     const author_dom = useRef()
@@ -22,11 +32,19 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
     const preview_img_dom = useRef()
     const navigate = useNavigate()
 
+    const handle_close_toastify = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        set_open_toastify(false);
+    }
+
     const preview_image_handler = (e) => {
         set_preview_image(e.target.files[0])
         preview_img_dom.current.src = URL.createObjectURL(e.target.files[0])
     }
     const submit_post_handler = async (e) => {
+        set_loading(true)
         const form_data = new FormData()
 
         const name = name_dom?.current?.value
@@ -70,19 +88,20 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
             }
             return response
         })
-        
+        set_loading(false)
         if (post_res?.data?.status_code?.toString() !== '1') {
             set_form_message("Lỗi hệ thống!")
             return
         }
         else {
             set_message_status(true)
-            set_form_message("Thành công!")
+            set_open_toastify(true)
             return
         }
     }
 
     const submit_modify_handler = async (e) => {
+        set_loading(true)
         const form_data = new FormData()
 
         const name = name_dom?.current?.value
@@ -127,14 +146,14 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
             }
             return response
         })
-        
+        set_loading(false)
         if (post_res?.data?.status_code?.toString() !== '1') {
             set_form_message("Lỗi hệ thống!")
             return
         }
         else {
             set_message_status(true)
-            set_form_message("Thành công!")
+            set_open_toastify(true)
             return
         }
     }
@@ -290,20 +309,26 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                             )
                         }
                     >
-                        <div className="product-form__btn-icon">
-                            <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect 
-                                    width="30" 
-                                    height="30" 
-                                    className="product-form__btn-rect-tag--submit"
-                                />
-                                <circle cx="15" cy="15" r="11.25" stroke="white"/>
-                                <path d="M10 15L13.75 18.75L20 11.25" stroke="white"/>
-                            </svg>
-                        </div>  
-                        <div className="product-form__btn-label">
-                            Xác nhận
-                        </div>
+                        {
+                            loading
+                            ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                            : <>
+                                <div className="product-form__btn-icon">
+                                    <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect 
+                                            width="30" 
+                                            height="30" 
+                                            className="product-form__btn-rect-tag--submit"
+                                        />
+                                        <circle cx="15" cy="15" r="11.25" stroke="white"/>
+                                        <path d="M10 15L13.75 18.75L20 11.25" stroke="white"/>
+                                    </svg>
+                                </div>  
+                                <div className="product-form__btn-label">
+                                    Xác nhận
+                                </div>
+                            </>
+                        }
                     </div>
                     <div 
                         className="product-form__btn product-form__btn--cancel" 
@@ -320,6 +345,9 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                         {
                             seller_cancel_add_btn
                             ? (
+                                loading
+                                ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                                : 
                                 <>
                                     <div className="product-form__btn-icon">
                                         <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -332,13 +360,17 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                                             <path d="M7.5 7.5L22.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                     </div>
-                                    <div className="product-form__btn-label">Hủy bỏ</div>
+                                    <div className="product-form__btn-label">
+                                        Hủy bỏ
+                                    </div>
                                 </>
                             )
                             : (
                                 seller_delete_btn 
                                 ? (
-                                    <>
+                                    loading
+                                    ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                                    : <>
                                         <div className="product-form__btn-icon">
                                             <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect 
@@ -350,7 +382,9 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                                                 <path d="M7.5 7.5L22.5 22.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
                                             </svg>
                                         </div>
-                                        <div className="product-form__btn-label">Xóa sản phẩm</div>
+                                        <div className="product-form__btn-label">
+                                            Xóa sản phẩm
+                                        </div>
                                     </>
                                 )
                                 : <></>
@@ -359,6 +393,17 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                     </div>
                 </div>
             </div>
+            <Stack spacing={2} sx={{ width: '0' }}>
+                <Snackbar open={open} autoHideDuration={3000} onClose={handle_close_toastify}>
+                    <Alert onClose={handle_close_toastify} severity="success" sx={{ width: '100%' }}>
+                        {
+                            book_data
+                            ? "Sửa thông tin sản phẩm thành công!"
+                            : "Đăng sản phẩm thành công!"
+                        }
+                    </Alert>
+                </Snackbar>
+            </Stack>
         </div>
     )
 }

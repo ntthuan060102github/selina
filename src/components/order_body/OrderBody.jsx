@@ -6,6 +6,7 @@ import { APP_ENV } from "../../configs/app_config"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import OrderInfoCard from "../order_info_card/OrderInfoCard"
 import CircularProgress from '@mui/material/CircularProgress'
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart'
 
 export default function OrderBody({set_has_token}) {
     const navigate = useNavigate()
@@ -44,9 +45,20 @@ export default function OrderBody({set_has_token}) {
                     {loading ? <CircularProgress/> : <></>}
                 </div>
                 {
-                    orders_data 
+                    orders_data.length
                     ? orders_data.map((order, idx) => (<OrderInfoCard key={idx} order={order} set_has_token={set_has_token}/>)) 
-                    : <></>
+                    : (
+                        !loading
+                        ? <div className="order-body__empty">
+                            <div className="order-body__empty-message">
+                                Bạn không có đơn hàng nào!
+                            </div>
+                            <div className="order-body__empty-icon">
+                                <RemoveShoppingCartIcon fontSize="large"/>
+                            </div>
+                        </div>
+                        : <></>
+                    )
                 }
             </div>
         </div>

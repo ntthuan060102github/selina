@@ -11,3 +11,10 @@
     row-gap: 24px;
     margin: 20px 0;
 }
+.product-grid__empty {
+    font-size: 26px;
+    text-align: center;
+}
+.product-grid__empty-message {
+    margin-bottom: 8px;
+}
