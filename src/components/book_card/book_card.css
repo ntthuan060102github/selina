@@ -34,11 +34,11 @@
     align-items: center;
 }
 .book-card__info {
-    flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     line-clamp: 1; 
     -webkit-box-orient: vertical;
+    margin: 4px 0;
 }

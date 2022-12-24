@@ -16,6 +16,8 @@ const Alert = forwardRef(function Alert(props, ref) {
 export default function CheckoutBody({ set_has_token, checkout_id }) {
     const navigate = useNavigate()
     const [user_data, set_user_data] = useState(JSON.parse(sessionStorage.getItem("user_info")))
+    const [checkout_data, set_checkout_data] = useState(JSON.parse(sessionStorage.getItem("checkout_data")))
+    const [active_btn, set_active_btn] = useState(true)
     const [open, set_open_toastify] = useState(false)
     const [message, set_message] = useState({})
     const address_dom = useRef()
@@ -27,6 +29,7 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
     }, [])
 
     const take_an_order = async () => {
+        set_active_btn(false)
         const response = await axios.post(
             `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/take-an-order`,
             {
@@ -104,11 +107,11 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
                 </div>
             </div>
             <div className="checkout-body__order-info">
-                <CheckoutInfoCard />
+                <CheckoutInfoCard checkout_data={checkout_data}/>
             </div>
             <div className="checkout-body__checkout">
                 <div className="checkout-body__checkout-btn">
-                    <div className="checkout-body__checkout-btn-content" onClick={take_an_order}>
+                    <div className="checkout-body__checkout-btn-content" onClick={active_btn ? take_an_order : () => {}}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 4H5.62563C6.193 4 6.47669 4 6.70214 4.12433C6.79511 4.17561 6.87933 4.24136 6.95162 4.31912C7.12692 4.50769 7.19573 4.7829 7.33333 5.33333L7.51493 6.05972C7.616 6.46402 7.66654 6.66617 7.74455 6.83576C8.01534 7.42449 8.5546 7.84553 9.19144 7.96546C9.37488 8 9.58326 8 10 8V8" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"/>
                         <path d="M18 17H7.55091C7.40471 17 7.33162 17 7.27616 16.9938C6.68857 16.928 6.28605 16.3695 6.40945 15.7913C6.42109 15.7367 6.44421 15.6674 6.49044 15.5287V15.5287C6.54177 15.3747 6.56743 15.2977 6.59579 15.2298C6.88607 14.5342 7.54277 14.0608 8.29448 14.0054C8.3679 14 8.44906 14 8.61137 14H14" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
