@@ -1,7 +1,7 @@
 .user-card {
     border: 1px solid var(--border-color-1);
     margin-bottom: 20px;
-    border-radius: 24px;
+    border-radius: 36px;
 }
 .user-card__sub-area-top {
     padding: 20px 0;
@@ -30,4 +30,37 @@
     height: 100%;
     border-radius: 50%;
     margin-right: 20px;
+}
+.user-card__buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px 20px 0;
+    color: var(--white-color)
+}
+.user-card__button {
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.25s;
+}
+.user-card__button-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+.user-card__unlock-button {
+    background-color: var(--green-color);
+}
+.user-card__unlock-button:hover {
+    background-color: var(--green-highlight-color);
+}
+.user-card__ban-button {
+    background-color: var(--red-color);
+}
+.user-card__ban-button:hover {
+    background-color: var(--red-highlight-color);
 }
