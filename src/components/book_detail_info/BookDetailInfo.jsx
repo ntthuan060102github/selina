@@ -8,6 +8,7 @@ import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
 import { useNavigate } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress'
+import ShopTag from "../shop_tag/ShopTag"
 
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -17,6 +18,7 @@ export default function BookDetailInfo({set_has_token, book_data}) {
     const counter = useRef()
     const [loading, set_loading] = useState(false)
     const [open, set_open_toastify] = useState(false)
+    const [shop_tag, set_shop_tag] = useState({})
     const navigate = useNavigate()
 
     const modify_counter_increase_handle = () => {
@@ -32,6 +34,27 @@ export default function BookDetailInfo({set_has_token, book_data}) {
         }
         counter.current.value = count - 1
     }
+    const get_seller_info = async () => {
+        const res = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.profile[APP_ENV].domain}/get-user-info-by-id`,
+            {
+                "user_id": book_data?.seller_id
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+        const seller = {
+            avatar_url: res?.data?.data?.avatar_url,
+            full_name: res?.data?.data?.full_name
+        }
+        set_shop_tag(seller)
+    }
+    get_seller_info()
     const add_to_cart_handler = async () => {
         set_loading(true)
         const res = await axios.post(
@@ -76,8 +99,7 @@ export default function BookDetailInfo({set_has_token, book_data}) {
             <div className="book-detail-info__sub-area">
                 <div className="book-detail-info__info-area">
                     <div className="book-detail-info__shop-label">
-                        <img src="/images/default_avt.png" alt="" className="book-detail-info__shop-img" />
-                        <div className="book-detail-info__shop-name">Nguyen Trong Thuan</div>
+                        <ShopTag user={shop_tag}/>
                     </div>
                     <div className="book-detail-info__name">
                         {book_data?.name}

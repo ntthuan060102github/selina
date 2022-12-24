@@ -1,6 +1,6 @@
 import "./secondary_layout.css"
-import TopBar from "../topbar/Topbar"
 import axios from "axios"
+import Footer from "../footer/Footer"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
 import { useNavigate } from "react-router-dom"
@@ -56,6 +56,7 @@ export default function SecondaryLayout({set_has_token, nav, body}) {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }   
