@@ -1,4 +1,4 @@
-import "./checkout_body.css"
+    import "./checkout_body.css"
 import CheckoutInfoCard from "../checkout_info_card/CheckoutInfoCard"
 import axios from "axios"
 import { APP_ENV } from "../../configs/app_config"
