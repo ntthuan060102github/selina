@@ -18,7 +18,7 @@ export default function HomeBody({set_has_token, owner_role}) {
 
     useEffect(() => {
         const get_my_info = async () => {
-            const user_data = JSON.parse(sessionStorage.getItem("user_info"))
+            let user_data = JSON.parse(sessionStorage.getItem("user_info"))
             const user_role = user_data.user_type
 
             set_user_data(user_data)

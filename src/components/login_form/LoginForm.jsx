@@ -42,7 +42,7 @@ export default function Login({set_has_token, set_owner_role}) {
         localStorage.setItem("access_token", login_result.data.access_token)
         localStorage.setItem("refresh_token", login_result.data.refresh_token)
         set_has_token(login_result.data.access_token)
-        set_owner_role(login_result.data.user_role)
+        set_owner_role(login_result.data.user_data.user_type)
         sessionStorage.setItem("user_info", JSON.stringify(login_result.data.user_data))
         navigate("/")
         return
@@ -85,7 +85,7 @@ export default function Login({set_has_token, set_owner_role}) {
                     set_form_message("")
                 }}
             />
-            <Link to="/forgot-password" className="form__nav-to-forgot-password">Quên mật khẩu?</Link>
+            <Link to="/authorization/forgot-password" className="form__nav-to-forgot-password">Quên mật khẩu?</Link>
             <div className="form__message">{form_message}</div>
             <div className="form__submit-btn" onClick={submit_form}>Login</div>
         </div>

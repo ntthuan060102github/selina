@@ -7,7 +7,7 @@ export default function MainLayout({body}) {
     return (
         <div className="main-layout">
             <div className="main-layout__top">
-                <TopBar/>
+                {/* <TopBar/> */}
             </div>
             <div className="main-layout__body">
                 {body}

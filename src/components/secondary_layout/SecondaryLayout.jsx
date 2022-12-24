@@ -29,7 +29,6 @@ export default function SecondaryLayout({set_has_token, nav, body}) {
     
     return (
         <div className="secondary-layout">
-            <TopBar/>
             <div className="secondary-layout__wrapper">
                 <div className="secondary-layout__sub-area">
                     <div className="secondary-layout__sub-area-wrapper">

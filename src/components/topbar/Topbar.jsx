@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom"
 import "./topbar.css"
 
 export default function TopBar() {
     const [user_data, set_user_data] = useState(
-        JSON.parse(sessionStorage.getItem("user_info"))
+        JSON.parse(sessionStorage.getItem("user_info")) || {}
     )
     const keyword = useRef()
     const navigate = useNavigate()
@@ -26,7 +26,9 @@ export default function TopBar() {
                         <img src="/images/logo.png" alt="" className="top-bar__logo-img" />
                     </Link>
                 </div>
-                <div className="top-bar__item top-bar__item-search">
+                {
+                    user_data.user_type !== "admin"
+                    ? <div className="top-bar__item top-bar__item-search">
                     <div className="top-bar__search-area" onKeyDown={submit_search_handler}>
                         <div className="top-bar__search-left">
                             <label className="top-bar__search-label" htmlFor="top-bar__search-input">
@@ -39,8 +41,12 @@ export default function TopBar() {
                             <input ref={keyword} type="text" className="top-bar__search-input" id="top-bar__search-input" placeholder="Search"/>
                         </div>
                     </div>
-                </div>
-                <div className="top-bar__item">
+                    </div>
+                    : <></>
+                }
+                {
+                    user_data.user_type !== "admin"
+                    ? <div className="top-bar__item">
                     <div className="top-bar__utility-tools">
                         <Link className="top-bar__utility-tool" to='/cart'>
                             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,18 +57,29 @@ export default function TopBar() {
                             </svg>
                         </Link>
                     </div>
-                </div>
+                    </div>
+                    : <></>
+                }
                 <div className="top-bar__item">
                     <div className="top-bar__user-area">
                         <div className="top-bar__user-name">
-                            Hello, <b>{user_data.full_name}</b>
+                            Hello, <b>{user_data?.full_name}</b>
                         </div>
-                        <Link to="/profile/me" className="top-bar__user-avatar">
-                            <img 
-                                src={user_data.avatar_url || "/images/default_avt.png"} 
-                                className="top-bar__user-avatar-img" 
-                            />
-                        </Link>
+                        {
+                            user_data.user_type !== "admin"
+                            ? <Link to="/profile/me" className="top-bar__user-avatar">
+                                <img 
+                                    src={user_data?.avatar_url || "/images/default_avt.png"} 
+                                    className="top-bar__user-avatar-img" 
+                                />
+                            </Link>
+                            : <div className="top-bar__user-avatar">
+                                <img 
+                                    src={user_data?.avatar_url || "/images/default_avt.png"} 
+                                    className="top-bar__user-avatar-img" 
+                                />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
