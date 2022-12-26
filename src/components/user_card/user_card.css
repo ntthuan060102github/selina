@@ -40,12 +40,14 @@
 }
 .user-card__button {
     height: 50px;
+    width: 220px;
     border-radius: 25px;
-    padding: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.25s;
+    user-select: none;
+    cursor: pointer;
 }
 .user-card__button-icon {
     display: flex;
