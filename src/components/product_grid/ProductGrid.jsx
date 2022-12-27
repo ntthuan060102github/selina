@@ -34,10 +34,7 @@ export default function ProductGrid({api, set_has_token}) {
                 }
                 return response
             })
-<<<<<<< HEAD
 
-=======
->>>>>>> b358052208eb925ac765d85ec14a832a949a05e0
             set_products(response?.data?.data?.docs)
             set_num_pages(response?.data?.data?.pages)
             set_curr_page(response?.data?.data?.page || 1)

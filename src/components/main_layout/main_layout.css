@@ -2,9 +2,5 @@
     background-color: var(--background-color-1);
 }
 .main-layout__body {
-<<<<<<< HEAD
     min-height: calc(100vh - 90px);
-=======
-    min-height: 75vh;
->>>>>>> b358052208eb925ac765d85ec14a832a949a05e0
 }

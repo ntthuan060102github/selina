@@ -146,6 +146,7 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
             }
             return response
         })
+        console.log(post_res.data)
         set_loading(false)
         if (post_res?.data?.status_code?.toString() !== '1') {
             set_form_message("Lỗi hệ thống!")
