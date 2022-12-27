@@ -9,6 +9,8 @@ import Order from "./pages/order/Order"
 import Checkout from "./pages/checkout/Checkout"
 import SellerRequirements from "./pages/seller_requirements/SellerRequirements"
 import TopBar from "./components/topbar/Topbar"
+import OTP from "./pages/otp/OTP"
+
 import "./base.css"
 import SELINA_API_SERVICE_INFOS from "./configs/selina_service_infos"
 import { APP_ENV } from "./configs/app_config"
@@ -84,6 +86,14 @@ function App() {
               has_token
               ? <Navigate to="/"/>
               : <ForgotPassword/>
+            }
+          />
+          <Route 
+            path="verification/:email" 
+            element={
+              has_token
+              ? <Navigate to="/"/>
+              : <OTP/>
             }
           />
         </Route>

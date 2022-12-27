@@ -64,7 +64,7 @@ export default function Login({set_has_token, set_owner_role}) {
                 type="email" 
                 className="form__input" 
                 id="form__login-email-input"
-                placeholder="Enter your Email"  
+                placeholder="Email"  
                 ref={user_email}
                 onFocus={() => {
                     set_form_error(false)
@@ -75,13 +75,13 @@ export default function Login({set_has_token, set_owner_role}) {
                 htmlFor="form__login-password-input" 
                 className="form__input-label"
             >
-                Password
+                Mật khẩu
             </label>
             <input 
                 type="password" 
                 className="form__input" 
                 id="form__login-password-input"
-                placeholder="Enter your Password"  
+                placeholder="Mật khẩu"  
                 ref={user_password}
                 onFocus={() => {
                     set_form_error(false)
@@ -94,7 +94,7 @@ export default function Login({set_has_token, set_owner_role}) {
                 {
                     loading
                     ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
-                    : "Login"
+                    : "Đăng nhập"
                 }
             </div>
         </div>

@@ -36,7 +36,7 @@ export default function TopBar() {
                             </label>
                         </div>
                         <div className="top-bar__search-right">
-                            <input ref={keyword} type="text" className="top-bar__search-input" id="top-bar__search-input" placeholder="Search"/>
+                            <input ref={keyword} type="text" className="top-bar__search-input" id="top-bar__search-input" placeholder="Nhập tên sách bạn muốn tìm kiếm..."/>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@ export default function TopBar() {
                 <div className="top-bar__item">
                     <div className="top-bar__user-area">
                         <div className="top-bar__user-name">
-                            Hello, <b>{user_data?.full_name}</b>
+                            Xin chào, <b>{user_data?.full_name}</b>
                         </div>
                         {
                             user_data.user_type !== "admin"

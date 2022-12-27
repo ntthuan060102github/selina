@@ -9,11 +9,12 @@ import { useNavigate } from "react-router-dom"
 import { APP_ENV } from "../../configs/app_config"
 import CircularProgress from '@mui/material/CircularProgress'
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
+import { useParams } from "react-router"
 
 export default function ForgotPasswordForm () {
-    const [message, set_message] = useState(`Mật khẩu sẽ được gửi tới Email của bạn!`)
-    const guest_email = useRef()
-    const email_regex_validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    const email = useParams().email
+    const otpDom = useRef()
+    const [message, set_message] = useState(`Vui lòng sử dụng OTP đã được gửi tới Email ${email}`)
     const [form_error, set_form_error] = useState(false)
     const [countdown, set_countdown] = useState(-1)
     const [loading, set_loading] = useState(false)
@@ -23,7 +24,7 @@ export default function ForgotPasswordForm () {
     useEffect(() => {
         timer = countdown > -1 && setInterval(() => {
             set_countdown(countdown - 1)
-            set_message(`Success, redirect to login (${countdown})`)
+            set_message(`Xác thực thành công, chuyển hướng đến Đăng nhập (${countdown})`)
             
             if (countdown <= 0) {
                 clearInterval(timer)
@@ -35,25 +36,13 @@ export default function ForgotPasswordForm () {
     }, [countdown, timer])
 
     const submit_form = async () => {
-        const user_email = guest_email.current.value
         set_loading(true)
 
-        if (user_email === "") {
-            set_form_error(true)
-            set_message("Vui lòng điền đầy đủ thông tin để tiến hành đăng ký!")
-            return
-        }
-
-        if (!email_regex_validate.test(user_email)) {
-            set_form_error(true)
-            set_message("Định dạng Email không được chấp nhận!")
-            return
-        }
-
         const response = await axios.post(
-            `${SELINA_API_SERVICE_INFOS.profile[APP_ENV].domain}/recover-password`,
+            `${SELINA_API_SERVICE_INFOS.profile[APP_ENV].domain}/approve-account`,
             {
-                email: user_email
+                email: email,
+                otp: otpDom.current.value
             }
         )
         const response_data = response.data
@@ -71,13 +60,13 @@ export default function ForgotPasswordForm () {
 
     return (
         <div className={form_error ? "form error" : "form"}>
-            <label htmlFor="form__forgot-password-input" className="form__input-label">Email</label>
+            <label htmlFor="form__otp-input" className="form__input-label">Vui lòng nhập OTP</label>
             <input 
                 type="email" 
                 className="form__input" 
-                id="form__forgot-password-input"
-                placeholder="Email"  
-                ref={guest_email}
+                id="form__otp-input"
+                placeholder="Enter your Email"  
+                ref={otpDom}
             />
             <span className="form__message">{message}</span>
             <div className="form__submit-btn" onClick={submit_form}>

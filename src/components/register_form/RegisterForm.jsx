@@ -1,6 +1,5 @@
 import {
     useState,
-    useEffect,
     useRef
 } from "react"
 import axios from "axios"
@@ -30,8 +29,9 @@ export default function RegisterForm() {
         const user_type = "normal_user"
 
         if (re_password !== password) {
+            set_loading(false)
             set_form_error(true)
-            set_form_message("pass k khớp")
+            set_form_message("Mật khẩu xác nhận không khớp!")
             return 
         }
 
@@ -48,6 +48,7 @@ export default function RegisterForm() {
             }
         )
         const register_result = register_response.data
+        console.log(register_result)
         
         set_form_message(register_result.message)
         
@@ -56,7 +57,7 @@ export default function RegisterForm() {
             set_form_error(true)
         }
         else {
-            setTimeout(() => navigate("/123"), 3000)
+            navigate(`/authorization/verification/${email}`)
         }
     }
 
@@ -66,13 +67,13 @@ export default function RegisterForm() {
             htmlFor="form__login-email-input" 
             className="form__input-label"
         >
-            Email Address
+            Email
         </label>
         <input 
             type="text" 
             className="form__input" 
             id="form__login-email-input"
-            placeholder="Enter your Email Address"  
+            placeholder="Email"  
             ref={user_email}
             onFocus={() => {
                 set_form_error(false)
@@ -83,13 +84,13 @@ export default function RegisterForm() {
             htmlFor="form__login-phone-num-input" 
             className="form__input-label"
         >
-            Phone Number
+            Số điện thoại
         </label>
         <input 
             type="text" 
             className="form__input" 
             id="form__login-phone-num-input"
-            placeholder="Enter your Phone Number"  
+            placeholder="Số điện thoại"  
             ref={user_phone_number}
             onFocus={() => {
                 set_form_error(false)
@@ -100,13 +101,13 @@ export default function RegisterForm() {
             htmlFor="form__login-password-input" 
             className="form__input-label"
         >
-            Password
+            Mật khẩu
         </label>
         <input 
             type="password" 
             className="form__input" 
             id="form__login-password-input"
-            placeholder="Enter your Password"  
+            placeholder="Mật khẩu"  
             ref={user_password}
             onFocus={() => {
                 set_form_error(false)
@@ -117,13 +118,13 @@ export default function RegisterForm() {
             htmlFor="form__login-re-password-input" 
             className="form__input-label"
         >
-            Re-enter your Password
+            Xác nhận mật khẩu
         </label>
         <input 
             type="email" 
             className="form__input" 
             id="form__login-re-password-input"
-            placeholder="Re-enter your Password"  
+            placeholder="Xác nhận mật khẩu"  
             ref={user_re_password}
             onFocus={() => {
                 set_form_error(false)
