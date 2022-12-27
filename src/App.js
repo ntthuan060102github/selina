@@ -10,6 +10,7 @@ import Checkout from "./pages/checkout/Checkout"
 import SellerRequirements from "./pages/seller_requirements/SellerRequirements"
 import TopBar from "./components/topbar/Topbar"
 import OTP from "./pages/otp/OTP"
+import ShopDetail from "./pages/shop_detail/ShopDetail"
 
 import "./base.css"
 import SELINA_API_SERVICE_INFOS from "./configs/selina_service_infos"
@@ -120,6 +121,14 @@ function App() {
             element={
               has_token 
               ? <BookDetail set_has_token={set_has_token}/>
+              : <Navigate to="/authorization"/>
+            }
+          />
+          <Route 
+            path="shop/:shop_id" 
+            element={
+              has_token 
+              ? <ShopDetail set_has_token={set_has_token}/>
               : <Navigate to="/authorization"/>
             }
           />

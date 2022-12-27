@@ -18,7 +18,6 @@ export default function BookDetailInfo({set_has_token, book_data}) {
     const counter = useRef()
     const [loading, set_loading] = useState(false)
     const [open, set_open_toastify] = useState(false)
-    const [shop_tag, set_shop_tag] = useState({})
     const navigate = useNavigate()
 
     const modify_counter_increase_handle = () => {
@@ -34,7 +33,6 @@ export default function BookDetailInfo({set_has_token, book_data}) {
         }
         counter.current.value = count - 1
     }
-
     const add_to_cart_handler = async () => {
         set_loading(true)
         const res = await axios.post(

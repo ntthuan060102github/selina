@@ -3,6 +3,7 @@
     border-radius: 60px;
     overflow: hidden;
     display: inline-block;
+    color: var(--black-color);
 }
 .shop-tag__wrapper {
     padding: 0 16px 0 10px;
