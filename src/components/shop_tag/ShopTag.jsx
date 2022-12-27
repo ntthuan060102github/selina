@@ -1,5 +1,5 @@
 import "./shop_tag.css"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function ShopTag({user}) {
     const owner = JSON.parse(sessionStorage.getItem("user_info"))

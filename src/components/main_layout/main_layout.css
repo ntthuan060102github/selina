@@ -1,3 +1,6 @@
 .main-layout {
     background-color: var(--background-color-1);
 }
+.main-layout__body {
+    min-height: 75vh;
+}
