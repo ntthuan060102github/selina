@@ -48,9 +48,10 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
                 set_has_token(false)
                 return navigate("/authorization")
             }
-            console.log(response)
             return response
         })
+        console.log(response.data)
+
         if (response?.data?.status_code?.toString() === '1') {
             set_message({
                 content: response?.data?.message,
@@ -67,6 +68,7 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
             })
             set_open_toastify(true)
         }
+        set_active_btn(true)
     }
 
     const handle_close_toastify = (event, reason) => {
