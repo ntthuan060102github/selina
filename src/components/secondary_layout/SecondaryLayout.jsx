@@ -56,7 +56,6 @@ export default function SecondaryLayout({set_has_token, nav, body}) {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }   

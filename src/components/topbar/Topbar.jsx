@@ -1,21 +1,40 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, forwardRef } from 'react';
 import { useNavigate, Link } from "react-router-dom"
+import MuiAlert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
+import Snackbar from '@mui/material/Snackbar'
 import "./topbar.css"
+
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+})
 
 export default function TopBar() {
     const [user_data, set_user_data] = useState(
         JSON.parse(sessionStorage.getItem("user_info")) || {}
     )
+    const [open, set_open_toastify] = useState(false)
     const keyword = useRef()
     const navigate = useNavigate()
     const submit_search_handler = (e) => {
-        if (e.key === 'Enter') {
-            const k = keyword?.current?.value
-
-            if (k) {
-                navigate(`/search?keyword=${k}`)
+        if (["normal_user", "seller"].includes(JSON.parse(sessionStorage.getItem("user_info")).user_type)) {
+            if (e.key === 'Enter') {
+                const k = keyword?.current?.value
+    
+                if (k) {
+                    navigate(`/search?keyword=${k}`)
+                }
             }
         }
+        else {
+            set_open_toastify(true)
+        }
+    }
+    const handle_close_toastify = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        set_open_toastify(false);
     }
 
     return (
@@ -79,6 +98,13 @@ export default function TopBar() {
                     </div>
                 </div>
             </div>
+            <Stack spacing={2} sx={{ width: '0' }}>
+                <Snackbar open={open} autoHideDuration={3000} onClose={handle_close_toastify}>
+                    <Alert onClose={handle_close_toastify} severity="info" sx={{ width: '100%' }}>
+                        Chức năng đang phát triển!
+                    </Alert>
+                </Snackbar>
+            </Stack>
         </div>
     )
 }

@@ -13,7 +13,7 @@ export default function MainLayout({body}) {
                 {body}
             </div>
             <div className="main-layout__footer">
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         </div>
     )

@@ -62,7 +62,7 @@ export default function HomeBody({set_has_token, owner_role}) {
                                 Lãng mạn
                             </a>
                         </li>
-                        <li className="home-body__categories-nav-item active">
+                        <li className="home-body__categories-nav-item">
                             <a href="javascript:void(0)" className="home-body__categories-nav-item-link">
                                 Kinh tế - tài chính
                             </a>

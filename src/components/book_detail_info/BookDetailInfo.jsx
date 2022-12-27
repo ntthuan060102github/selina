@@ -134,7 +134,7 @@ export default function BookDetailInfo({set_has_token, book_data}) {
             <Stack spacing={2} sx={{ width: '0' }}>
                 <Snackbar open={open} autoHideDuration={3000} onClose={handle_close_toastify}>
                     <Alert onClose={handle_close_toastify} severity="success" sx={{ width: '100%' }}>
-                        Them vao gio hang thanh cong!
+                        Thêm vào giỏ hành thành công!
                     </Alert>
                 </Snackbar>
             </Stack>

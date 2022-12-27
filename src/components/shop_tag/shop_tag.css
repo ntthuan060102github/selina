@@ -18,4 +18,5 @@
     height: 70%;
     border-radius: 70%;
     margin-right: 12px;
+    aspect-ratio: 1;
 }

@@ -34,7 +34,7 @@ export default function ProductGrid({api, set_has_token}) {
                 }
                 return response
             })
-            console.log(response.data)
+
             set_products(response?.data?.data?.docs)
             set_num_pages(response?.data?.data?.pages)
             set_curr_page(response?.data?.data?.page || 1)

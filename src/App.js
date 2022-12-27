@@ -11,6 +11,7 @@ import SellerRequirements from "./pages/seller_requirements/SellerRequirements"
 import TopBar from "./components/topbar/Topbar"
 import OTP from "./pages/otp/OTP"
 import ShopDetail from "./pages/shop_detail/ShopDetail"
+import Footer from "./components/footer/Footer"
 
 import "./base.css"
 import SELINA_API_SERVICE_INFOS from "./configs/selina_service_infos"
@@ -105,6 +106,7 @@ function App() {
             <>
               <TopBar/>
               <Outlet/>
+              <Footer/>
             </>
           }
         >

@@ -96,6 +96,7 @@
 .top-bar__user-avatar-img {
     height: 100%;
     border-radius: 50%;
+    aspect-ratio: 1;
 }
 .top-bar__user-name {
     user-select: none;
