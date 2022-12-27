@@ -4,6 +4,7 @@
     overflow: hidden;
     display: inline-block;
     color: var(--black-color);
+    cursor: pointer;
 }
 .shop-tag__wrapper {
     padding: 0 16px 0 10px;
@@ -16,6 +17,7 @@
 }
 .shop-tag__avatar {
     height: 70%;
+    aspect-ratio: 1;
     border-radius: 70%;
     margin-right: 12px;
     aspect-ratio: 1;

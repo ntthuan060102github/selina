@@ -8,11 +8,12 @@ export default function ShopSection({ shop_data, set_total_price, set_checkout_i
     const [books, set_books] = useState([])
     const [shop_total_price, set_shop_total_price] = useState(0)
     const check_dom = useRef()
-
+    console.log(shop_data)
     useEffect(() => {
         const seller = {
             avatar_url: shop_data?.seller_avt,
-            full_name: shop_data?.seller_name
+            full_name: shop_data?.seller_name,
+            user_id: shop_data?.seller_id
         }
         set_seller_tag(seller)
         set_books(shop_data?.books)
