@@ -11,6 +11,7 @@
     align-items: center;
     background-color: var(--background-color-2);
     height: 100%;
+    user-select: none;
 }
 .shop-tag__avatar {
     height: 70%;

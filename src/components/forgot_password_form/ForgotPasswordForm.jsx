@@ -7,6 +7,7 @@ import {
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 import { APP_ENV } from "../../configs/app_config"
+import CircularProgress from '@mui/material/CircularProgress'
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 
 export default function ForgotPasswordForm () {
@@ -15,6 +16,7 @@ export default function ForgotPasswordForm () {
     const email_regex_validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     const [form_error, set_form_error] = useState(false)
     const [countdown, set_countdown] = useState(-1)
+    const [loading, set_loading] = useState(false)
     const navigate = useNavigate()
     let timer = null
     
@@ -34,6 +36,7 @@ export default function ForgotPasswordForm () {
 
     const submit_form = async () => {
         const user_email = guest_email.current.value
+        set_loading(true)
 
         if (user_email === "") {
             set_form_error(true)
@@ -63,6 +66,7 @@ export default function ForgotPasswordForm () {
             set_form_error(false)
             set_countdown(5)
         }
+        set_loading(false)
     }
 
     return (
@@ -76,7 +80,13 @@ export default function ForgotPasswordForm () {
                 ref={guest_email}
             />
             <span className="form__message">{message}</span>
-            <div className="form__submit-btn" onClick={submit_form}>Send</div>
+            <div className="form__submit-btn" onClick={submit_form}>
+                {
+                    loading
+                    ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                    : "Login"
+                }
+            </div>
         </div>
     )
 }

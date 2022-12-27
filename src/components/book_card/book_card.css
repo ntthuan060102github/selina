@@ -21,6 +21,7 @@
 .book-card__img-area {
     min-height: 75%;
     margin-bottom: 4px;
+    user-select: none;
 }
 .book-card__img {
     height: 100%;

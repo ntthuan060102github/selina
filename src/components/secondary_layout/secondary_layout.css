@@ -60,5 +60,11 @@
 .secondary-layout__body {
     padding: 40px;
     padding-bottom: 0;
+    user-select: none;
     /* height: 100%; */
+}
+.secondary-layout___user-avt,
+.secondary-layout___user-name,
+.user-profile-menu {
+    user-select: none;
 }

@@ -15,6 +15,7 @@
 .cart-body__receipt-content {
     margin: 24px 0;
     font-size: 1.3rem;
+    user-select: none;
 }
 .cart-body__total {
     color: var(--red-highlight-color);

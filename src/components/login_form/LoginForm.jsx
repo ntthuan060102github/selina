@@ -6,6 +6,7 @@ import "../others/css/form.css"
 import axios from "axios"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
+import CircularProgress from '@mui/material/CircularProgress'
 import { useNavigate, Link } from "react-router-dom"
 
 export default function Login({set_has_token, set_owner_role}) {
@@ -14,8 +15,10 @@ export default function Login({set_has_token, set_owner_role}) {
     const user_email = useRef()
     const user_password = useRef()
     const navigate = useNavigate()
+    const [loading, set_loading] = useState(false)
 
     const submit_form = async () => {
+        set_loading(true)
         const email = user_email?.current?.value
         const password = user_password?.current?.value
 
@@ -33,7 +36,7 @@ export default function Login({set_has_token, set_owner_role}) {
             }
         )
         const login_result = login_response?.data
-        
+        set_loading(false)
         if (login_result?.status_code?.toString() !== '1'){
             set_form_message(login_result.message)
             set_form_error(true)
@@ -87,7 +90,13 @@ export default function Login({set_has_token, set_owner_role}) {
             />
             <Link to="/authorization/forgot-password" className="form__nav-to-forgot-password">Quên mật khẩu?</Link>
             <div className="form__message">{form_message}</div>
-            <div className="form__submit-btn" onClick={submit_form}>Login</div>
+            <div className="form__submit-btn" onClick={submit_form}>
+                {
+                    loading
+                    ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                    : "Login"
+                }
+            </div>
         </div>
     </div>
   )

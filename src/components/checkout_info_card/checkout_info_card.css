@@ -1,6 +1,7 @@
 .checkout-info-card {
     border-radius: 20px;
     border: 1px solid var(--border-highlight-color-1);
+    user-select: none;
 }
 .checkout-info-card__seller-tag {
     padding: 16px 20px;

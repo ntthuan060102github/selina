@@ -8,6 +8,7 @@ import "../others/css/form.css"
 import "./register_form.css"
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { APP_ENV } from "../../configs/app_config"
+import CircularProgress from '@mui/material/CircularProgress'
 import { useNavigate } from "react-router-dom"
 
 export default function RegisterForm() {
@@ -17,10 +18,11 @@ export default function RegisterForm() {
     const user_phone_number = useRef()
     const user_password = useRef()
     const user_re_password = useRef()
-    const user_type = useRef()
+    const [loading, set_loading] = useState(false)
     const navigate = useNavigate()
 
     const submit_form = async () => {
+        set_loading(true)
         const email = user_email?.current?.value
         const phone_number = user_phone_number?.current?.value
         const password = user_password?.current?.value
@@ -49,6 +51,7 @@ export default function RegisterForm() {
         
         set_form_message(register_result.message)
         
+        set_loading(false)
         if (register_result.status_code !== 1) {
             set_form_error(true)
         }
@@ -128,7 +131,13 @@ export default function RegisterForm() {
             }}
         />
         <div className="form__message">{form_message}</div>
-        <div className="form__submit-btn" onClick={submit_form}>Register</div>
+        <div className="form__submit-btn" onClick={submit_form}>
+            {
+                loading
+                ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                : "Register"
+            }
+        </div>
     </div>
   )
 }

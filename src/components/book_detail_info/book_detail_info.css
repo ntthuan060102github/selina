@@ -4,6 +4,9 @@
     width: 100%;
     justify-content: space-between;
 }
+.book-detail-info__counter-num {
+    user-select: none;
+}
 .book-detail-info__sub-area {
     flex: 1;
 }
@@ -13,6 +16,7 @@
 }
 .book-detail-info__img-area {
     border: 1px solid #ccc;
+    user-select: none;
 }
 .book-detail-info__info-area {
     padding: 0 40px;

@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import UserCard from "../user_card/UserCard"
 import "./admin_home.css"
+import CircularProgress from '@mui/material/CircularProgress'
 
 export default function AdminHome({set_has_token}) {
     const [users, set_users] = useState([])
+    const [loading, set_loading] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -28,6 +30,7 @@ export default function AdminHome({set_has_token}) {
                 return response
             })
             const users = response.data.data
+            set_loading(false)
             set_users(users)
         }
         get_data()
@@ -35,9 +38,14 @@ export default function AdminHome({set_has_token}) {
 
     return (
         <div className="admin-home">
-            {
-                users.map((user, idx) => <UserCard key={idx} set_has_token={set_has_token} user_data={user}/>)
-            }
+            <div className="admin-home__loading">
+                {loading ? <CircularProgress/> : <></>}
+            </div>
+            <div className="admin-home__users">
+                {
+                    users.map((user, idx) => <UserCard key={idx} set_has_token={set_has_token} user_data={user}/>)
+                }
+            </div>
         </div>
     )
 }

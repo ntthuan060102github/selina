@@ -45,6 +45,9 @@
     transition: color 0.25s;
     user-select: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .form__submit-btn:hover {
     background-color: var(--primary-color-highlight);
