@@ -23,6 +23,7 @@
 .secondary-layout___user-avt-img {
     width: 100%;
     border-radius: 50%;
+    aspect-ratio: 1;
 }
 .secondary-layout__sub-area-row:first-child {
     display: flex;

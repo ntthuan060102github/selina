@@ -1,6 +1,7 @@
 .shop-section__selector {
     display: flex;
     align-items: center;
+    user-select: none;
 }
 .shop-section__selector-checkbox {
     width: 24px;

@@ -28,7 +28,7 @@ export default function AddProductPopup({set_has_token}) {
                     height: 40
                 }}
             >
-                +&nbsp;&nbsp;&nbsp;Add new book
+                +&nbsp;&nbsp;&nbsp;Thêm sản phẩm
             </Button>
             <Dialog 
                 open={open} 

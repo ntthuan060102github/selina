@@ -95,6 +95,7 @@ export default function CartBody({set_has_token}) {
                             set_checkout_shop={set_checkout_shop}
                             set_total_price={set_total_price}
                             key={shop.group_id}
+                            set_has_token={set_has_token}
                         />)
                     }
                     <div className="cart-body__receipt">

@@ -1,20 +1,65 @@
 import "./cart_item.css"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios"
+import { APP_ENV } from "../../configs/app_config"
+import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
+import { useNavigate } from "react-router-dom"
 
-export default function CartItem({ book_data, set_shop_total_price, synchronize_total_price }) {
+export default function CartItem({ set_has_token, book_data, set_shop_total_price, synchronize_total_price }) {
     const price = book_data?.price
+    const navigate = useNavigate()
     const [quantity, set_quantity] = useState(book_data?.quantity)
     const [total, set_total] = useState(book_data?.total_price)
 
-    const quantity_decrement_handler = () => {
+    const quantity_decrement_handler = async () => {
         if (quantity <= 1) return
+
+        axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/modify-quantity-book-in-cart`,
+            {
+                quantity: quantity - 1,
+                book_in_cart_id: book_data.book_in_cart_id 
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+
         set_quantity(quantity - 1)
         set_shop_total_price(total_price => total_price - price)
         return
     }
 
-    const quantity_increment_handler = () => {
+    const quantity_increment_handler = async () => {
+        axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/modify-quantity-book-in-cart`,
+            {
+                quantity: quantity + 1,
+                book_in_cart_id: book_data.book_in_cart_id 
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
         set_quantity(quantity + 1)
         set_shop_total_price(total_price => total_price + price)
         return

@@ -50,7 +50,8 @@ export default function ProfileForm({set_has_token}) {
             email_dom.current.value = user_data.email || ""
             phone_dom.current.value = user_data.phone_num || ""
             address_dom.current.value = user_data.address || ""
-            genre_dom.current.checked = user_data.genre
+            genre_dom.current.checked = user_data.gender
+
             set_preview_new_avt(user_data.avatar_url)
         }
         get_user_data()
@@ -142,7 +143,7 @@ export default function ProfileForm({set_has_token}) {
                                 <div className="profile-form__radio-area">
                                     <input ref={genre_dom} type="radio" className="profile-form__form-input-radio" id="profile-form__genre-male-id" name="profile-form__genre-id" />
                                     <label htmlFor="profile-form__genre-male-id" className="profile-form__radio-label">Nam</label>
-                                    <input type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id"name="profile-form__genre-id" />
+                                    <input checked={true} type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id" name="profile-form__genre-id" />
                                     <label htmlFor="profile-form__genre-female-id" className="profile-form__radio-label">Nữ</label>
                                 </div>
                             </div>

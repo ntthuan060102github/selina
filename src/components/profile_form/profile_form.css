@@ -68,6 +68,7 @@
 .profile-form__avt-img {
     width: 65%;
     border-radius: 50%;
+    aspect-ratio: 1;
 }
 .profile-form__avt-btn {
     height: 40px;

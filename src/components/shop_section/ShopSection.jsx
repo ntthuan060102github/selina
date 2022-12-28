@@ -3,12 +3,12 @@ import ShopTag from "../shop_tag/ShopTag"
 import CartItem from "../cart_item/CartItem"
 import { useState, useEffect, useRef } from "react"
 
-export default function ShopSection({ shop_data, set_total_price, set_checkout_id, set_checkout_shop }) {
+export default function ShopSection({ set_has_token, shop_data, set_total_price, set_checkout_id, set_checkout_shop }) {
     const [seller_tag, set_seller_tag] = useState({})
     const [books, set_books] = useState([])
     const [shop_total_price, set_shop_total_price] = useState(0)
     const check_dom = useRef()
-    console.log(shop_data)
+
     useEffect(() => {
         const seller = {
             avatar_url: shop_data?.seller_avt,
@@ -50,6 +50,7 @@ export default function ShopSection({ shop_data, set_total_price, set_checkout_i
                     key={book.book_id}
                     set_shop_total_price={set_shop_total_price}
                     synchronize_total_price={synchronize_total_price}
+                    set_has_token={set_has_token}
                 />)
             } 
         </div>
