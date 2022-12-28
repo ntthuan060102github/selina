@@ -29,6 +29,7 @@ import { useEffect, useState } from "react"
 function App() {
   const [has_token, set_has_token] = useState("")
   const [owner_role, set_owner_role] = useState("")
+  const [user_data, set_user_data] = useState({})
 
   useEffect(() => {
     set_has_token(localStorage.getItem("access_token"))
@@ -53,6 +54,7 @@ function App() {
 
         const user_data = response.data.data
         set_owner_role(user_data.user_type)
+        set_user_data(user_data)
 
         if (!sessionStorage.getItem("user_info")) {
           sessionStorage.setItem("user_info", JSON.stringify(user_data))
@@ -104,7 +106,7 @@ function App() {
           path="" 
           element={
             <>
-              <TopBar/>
+              <TopBar user_data={user_data}/>
               <Outlet/>
               <Footer/>
             </>

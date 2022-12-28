@@ -9,13 +9,11 @@ const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 })
 
-export default function TopBar() {
-    const [user_data, set_user_data] = useState(
-        JSON.parse(sessionStorage.getItem("user_info")) || {}
-    )
+export default function TopBar({user_data}) {
     const [open, set_open_toastify] = useState(false)
     const keyword = useRef()
     const navigate = useNavigate()
+
     const submit_search_handler = (e) => {
         if (["normal_user", "seller"].includes(JSON.parse(sessionStorage.getItem("user_info")).user_type)) {
             if (e.key === 'Enter') {
