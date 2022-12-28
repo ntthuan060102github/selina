@@ -18,6 +18,10 @@ export default function BookDetailInfo({set_has_token, book_data}) {
     const counter = useRef()
     const [loading, set_loading] = useState(false)
     const [open, set_open_toastify] = useState(false)
+    const [toastify_data, set_toastify_data] = useState({
+        message: "Thêm vào giỏ hành thành công!",
+        severity: "success"
+    })
     const navigate = useNavigate()
 
     const modify_counter_increase_handle = () => {
@@ -56,6 +60,17 @@ export default function BookDetailInfo({set_has_token, book_data}) {
         })
 
         if (res?.data?.status_code.toString() === "1") {
+            set_toastify_data({
+                message: "Thêm vào giỏ hành thành công!",
+                severity: "success"
+            })
+            set_open_toastify(true)
+        }
+        else {
+            set_toastify_data({
+                message: res?.data?.message,
+                severity: "warning"
+            })
             set_open_toastify(true)
         }
         set_loading(false)
@@ -133,8 +148,8 @@ export default function BookDetailInfo({set_has_token, book_data}) {
             </div>
             <Stack spacing={2} sx={{ width: '0' }}>
                 <Snackbar open={open} autoHideDuration={3000} onClose={handle_close_toastify}>
-                    <Alert onClose={handle_close_toastify} severity="success" sx={{ width: '100%' }}>
-                        Thêm vào giỏ hành thành công!
+                    <Alert onClose={handle_close_toastify} severity={toastify_data.severity} sx={{ width: '100%' }}>
+                        { toastify_data.message }
                     </Alert>
                 </Snackbar>
             </Stack>
