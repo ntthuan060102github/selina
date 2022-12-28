@@ -62,6 +62,7 @@ export default function CartBody({set_has_token}) {
             set_open_toastify(true)
             return
         }
+        console.log(checkout_shop)
         const shop_str_data = JSON.stringify(checkout_shop)
         sessionStorage.setItem("checkout_data", shop_str_data)
         navigate(`/checkout/${checkout_id}`)

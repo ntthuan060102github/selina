@@ -3,7 +3,6 @@ import ShopTag from "../shop_tag/ShopTag"
 import { Link } from "react-router-dom"
 
 export default function CheckoutInfoCard({ checkout_data }) {
-    console.log(checkout_data)
     const seller = {
         avatar_url: checkout_data?.seller_avt,
         full_name: checkout_data?.seller_name,

@@ -9,7 +9,7 @@ import { APP_ENV } from "../../configs/app_config"
 import CircularProgress from '@mui/material/CircularProgress'
 import { useNavigate, Link } from "react-router-dom"
 
-export default function Login({set_has_token, set_owner_role}) {
+export default function Login({set_has_token, set_owner_role, set_user_data}) {
     const [form_error, set_form_error] = useState(false)
     const [form_message, set_form_message] = useState("")
     const user_email = useRef()
@@ -46,6 +46,7 @@ export default function Login({set_has_token, set_owner_role}) {
         localStorage.setItem("refresh_token", login_result.data.refresh_token)
         set_has_token(login_result.data.access_token)
         set_owner_role(login_result.data.user_data.user_type)
+        set_user_data(login_result.data.user_data)
         sessionStorage.setItem("user_info", JSON.stringify(login_result.data.user_data))
         navigate("/")
         return

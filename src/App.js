@@ -81,7 +81,7 @@ function App() {
             element={
               has_token 
               ? <Navigate to="/"/>
-              : <UnAuthorization set_has_token={set_has_token} set_owner_role={set_owner_role} has_token={has_token}/>
+              : <UnAuthorization set_user_data={set_user_data} set_has_token={set_has_token} set_owner_role={set_owner_role} has_token={has_token}/>
             }
           />
           <Route 
