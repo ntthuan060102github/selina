@@ -53,27 +53,27 @@ export default function HomeBody({set_has_token, owner_role}) {
                     </div>
                     <ul className="home-body__categories-nav-list">
                         <li className="home-body__categories-nav-item">
-                            <a href="javascript:void(0)" className="home-body__categories-nav-item-link">
+                            <a href="#!" className="home-body__categories-nav-item-link">
                                 Trinh thám
                             </a>
                         </li>
                         <li className="home-body__categories-nav-item">
-                            <a href="javascript:void(0)" className="home-body__categories-nav-item-link">
+                            <a href="#!" className="home-body__categories-nav-item-link">
                                 Lãng mạn
                             </a>
                         </li>
                         <li className="home-body__categories-nav-item">
-                            <a href="javascript:void(0)" className="home-body__categories-nav-item-link">
+                            <a href="#!" className="home-body__categories-nav-item-link">
                                 Kinh tế - tài chính
                             </a>
                         </li>
                         <li className="home-body__categories-nav-item">
-                            <a href="javascript:void(0)" className="home-body__categories-nav-item-link">
+                            <a href="#!" className="home-body__categories-nav-item-link">
                                 Thiếu nhi
                             </a>
                         </li>
                         <li className="home-body__categories-nav-item">
-                            <a href="javascript:void(0)" className="home-body__categories-nav-item-link">
+                            <a href="#!" className="home-body__categories-nav-item-link">
                                 Khoa học viễn tưởng
                             </a>
                         </li>

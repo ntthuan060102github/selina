@@ -143,7 +143,7 @@ export default function ProfileForm({set_has_token}) {
                                 <div className="profile-form__radio-area">
                                     <input ref={genre_dom} type="radio" className="profile-form__form-input-radio" id="profile-form__genre-male-id" name="profile-form__genre-id" />
                                     <label htmlFor="profile-form__genre-male-id" className="profile-form__radio-label">Nam</label>
-                                    <input checked={true} type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id" name="profile-form__genre-id" />
+                                    <input defaultChecked={true} type="radio" className="profile-form__form-input-radio" id="profile-form__genre-female-id" name="profile-form__genre-id" />
                                     <label htmlFor="profile-form__genre-female-id" className="profile-form__radio-label">Nữ</label>
                                 </div>
                             </div>

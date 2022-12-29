@@ -44,3 +44,7 @@
 .cart-body__payment-btn-content svg {
     margin-right: 8px;
 }
+.cart-body__loading {
+    display: flex;
+    justify-content: center;
+}

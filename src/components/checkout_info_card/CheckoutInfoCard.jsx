@@ -15,7 +15,7 @@ export default function CheckoutInfoCard({ checkout_data }) {
                 <ShopTag user={seller}/>
             </div>
             <div className="checkout-info-card__books">
-                {checkout_data?.books.map(book => (
+                {checkout_data && checkout_data?.books?.map(book => (
                     <div className="checkout-info-card__book" key={book?.book_id}>
                         <div className="checkout-info-card__book-group">
                             <Link className="checkout-info-card__book-img" to={`/book/${book?.book_id}`}>

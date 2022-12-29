@@ -40,8 +40,12 @@
     background-color: var(--blue-primary-color);
     height: var(--height-btn);
     border-radius: var(--height-btn);
-    padding-right: 16px;
+    display: flex;
+    justify-content: center;
+    float: right;
+    width: 150px;
     user-select: none;
+    color: var(--white-color);
 }
 .checkout-body__checkout-btn:hover {
     background-color: var(--blue-primary-highlight-color);
@@ -50,9 +54,12 @@
     display: flex;
     align-items: center;
     height: var(--height-btn);
-    margin-left: 12px;
     color: var(--text-color-3);
 }
 .checkout-body__checkout-btn-content svg {
     margin-right: 8px;
+}
+.checkout-body__loading {
+    display: flex;
+    justify-content: center;
 }

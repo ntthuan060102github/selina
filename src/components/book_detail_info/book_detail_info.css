@@ -89,9 +89,10 @@
     text-align: center;
     color: var(--white-color);
     background-color: var(--green-color);
-    padding: 0 16px;
+    width: 180px;
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: 0.25s;
     border-radius: 50px;
 }
