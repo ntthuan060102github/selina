@@ -19,6 +19,7 @@
 }
 .horizontal-book-card__shop-avt-img {
     height: 100%;
+    aspect-ratio: 1;
     border-radius: 50%;
     margin-right: 12px;
 }

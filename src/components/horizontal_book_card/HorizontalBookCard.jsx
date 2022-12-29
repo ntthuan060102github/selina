@@ -6,6 +6,7 @@ import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 import { useNavigate } from "react-router-dom"
 
 export default function HorizontalBookCard({set_has_token, book_data}) {
+    console.log(book_data)
     const navigate = useNavigate()
     const [hidden, set_hidden] = useState(false)
 
@@ -69,7 +70,7 @@ export default function HorizontalBookCard({set_has_token, book_data}) {
                             <img src={book_data.seller_info.avatar_url || "/images/default_avt.png"} className="horizontal-book-card__shop-avt-img" />
                         </div>
                         <div className="horizontal-book-card__shop-name">
-                            Trong Thuan
+                            {book_data.seller_info.full_name}
                         </div>
                     </div>
                     <div className="horizontal-book-card__sub-area">
