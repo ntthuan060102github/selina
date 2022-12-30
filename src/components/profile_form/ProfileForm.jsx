@@ -19,6 +19,7 @@ export default function ProfileForm({set_has_token}) {
     const [new_avt_img, set_new_avt_img] = useState(null)
     const [open, set_open_toastify] = useState(false)
     const [submit_loading, set_submit_loading] = useState(false)
+    const [message, set_message] = useState({})
 
     const full_name_dom = useRef()
     const email_dom = useRef()
@@ -68,6 +69,17 @@ export default function ProfileForm({set_has_token}) {
         const address = address_dom.current.value
         const gender = genre_dom.current.checked
         const file = new_avt_img
+        const vietnam_phone_nm_re = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g
+
+        if (!phone_num.match(vietnam_phone_nm_re)) {
+            set_message({
+                content: "Số điện thoại không hợp lệ!",
+                severity: "error",
+                color: "error"
+            })
+            set_open_toastify(true)
+            return
+        }
 
         const form_data = new FormData()
 
@@ -96,6 +108,11 @@ export default function ProfileForm({set_has_token}) {
         })
         set_submit_loading(false)
         if (modify_response.data.status_code.toString() === "1") {
+            set_message({
+                content: "Sửa thông tin thành công!",
+                severity: "success",
+                color: "info"
+            })
             set_open_toastify(true)
         }
     }
@@ -111,8 +128,8 @@ export default function ProfileForm({set_has_token}) {
         <div className="profile-form">
             <Stack spacing={2} sx={{ width: '0' }}>
                 <Snackbar open={open} autoHideDuration={3000} onClose={handle_close_toastify}>
-                    <Alert onClose={handle_close_toastify} severity="success" color="info" sx={{ width: '100%' }}>
-                        Đã cập nhật thông tin cá nhân!
+                    <Alert onClose={handle_close_toastify} severity={message.severity} color={message.color} sx={{ width: '100%' }}>
+                        {message.content}
                     </Alert>
                 </Snackbar>
             </Stack>
