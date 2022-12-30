@@ -25,7 +25,7 @@ export default function Login({set_has_token, set_owner_role, set_user_data}) {
         if (!email || !password) {
             set_loading(false)
             set_form_error(true)
-            set_form_message("điền thông tin")
+            set_form_message("Vui lòng điền đầy đủ thông tin!")
             return
         }
 
@@ -39,6 +39,10 @@ export default function Login({set_has_token, set_owner_role, set_user_data}) {
         const login_result = login_response?.data
         set_loading(false)
         if (login_result?.status_code?.toString() !== '1'){
+            if (login_result.data === "unverified_account") {
+                navigate(`/authorization/verification/${email}`)
+                return
+            }
             set_form_message(login_result.message)
             set_form_error(true)
             return

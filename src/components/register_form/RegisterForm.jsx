@@ -14,7 +14,7 @@ export default function RegisterForm() {
     const [form_error, set_form_error] = useState(false)
     const [form_message, set_form_message] = useState("")
     const user_email = useRef()
-    const user_phone_number = useRef()
+    const user_name = useRef()
     const user_password = useRef()
     const user_re_password = useRef()
     const [loading, set_loading] = useState(false)
@@ -23,11 +23,11 @@ export default function RegisterForm() {
     const submit_form = async () => {
         set_loading(true)
         const email = user_email?.current?.value
-        const phone_number = user_phone_number?.current?.value
+        const full_name = user_name?.current?.value
         const password = user_password?.current?.value
         const re_password = user_re_password?.current?.value
         const user_type = "normal_user"
-
+        console.log(password, re_password)
         if (re_password !== password) {
             set_loading(false)
             set_form_error(true)
@@ -39,9 +39,9 @@ export default function RegisterForm() {
             `${SELINA_API_SERVICE_INFOS.profile[APP_ENV].domain}/create-new-account`,
             {
                 email: email,
-                full_name: "Nguyen Trong Thuan",
+                full_name: full_name,
                 device_token: "",
-                phone_num: phone_number,
+                phone_num: "",
                 gender: true,
                 password: password,
                 user_type: user_type
@@ -84,14 +84,14 @@ export default function RegisterForm() {
             htmlFor="form__login-phone-num-input" 
             className="form__input-label"
         >
-            Số điện thoại
+            Họ và tên
         </label>
         <input 
             type="text" 
             className="form__input" 
             id="form__login-phone-num-input"
-            placeholder="Số điện thoại"  
-            ref={user_phone_number}
+            placeholder="Họ và tên"  
+            ref={user_name}
             onFocus={() => {
                 set_form_error(false)
                 set_form_message("")
