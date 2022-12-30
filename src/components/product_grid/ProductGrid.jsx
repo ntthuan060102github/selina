@@ -19,6 +19,7 @@ export default function ProductGrid({api, set_has_token}) {
 
     useEffect(() => {
         const get_data = async () => {
+            set_loading(true)
             const response = await axios.get(
                 `${api}page=${curr_page.toString()}`,
                 {
@@ -41,7 +42,7 @@ export default function ProductGrid({api, set_has_token}) {
             set_loading(false)
         }
         get_data(api)
-    }, [curr_page])
+    }, [curr_page, api])
 
     const click_pagination_bar = function(e, page) {
         set_curr_page(page)
@@ -50,7 +51,7 @@ export default function ProductGrid({api, set_has_token}) {
     return (
         <div className="product-grid">
             {
-                products.length
+                products.length && !loading
                 ? <>
                     <div className="product-grid__grid">
                         {
