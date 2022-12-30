@@ -23,6 +23,7 @@ export default function Login({set_has_token, set_owner_role, set_user_data}) {
         const password = user_password?.current?.value
 
         if (!email || !password) {
+            set_loading(false)
             set_form_error(true)
             set_form_message("điền thông tin")
             return

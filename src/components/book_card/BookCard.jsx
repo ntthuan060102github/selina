@@ -13,7 +13,7 @@ export default function BookCard({book}) {
                     <b>{book?.name}</b>
                 </div>
                 <div className="book-card__info book-card__desc">
-                    Nguyen Trong Thuan
+                    {book?.author}
                 </div>
                 <div className="book-card__info book-card__price">
                     {book?.price}đ
