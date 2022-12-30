@@ -41,12 +41,14 @@ export default function ForgotPasswordForm () {
         if (user_email === "") {
             set_form_error(true)
             set_message("Vui lòng điền đầy đủ thông tin để tiến hành đăng ký!")
+            set_loading(false)
             return
         }
 
         if (!email_regex_validate.test(user_email)) {
             set_form_error(true)
             set_message("Định dạng Email không được chấp nhận!")
+            set_loading(false)
             return
         }
 

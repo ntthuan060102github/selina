@@ -3,7 +3,6 @@ import UnAuthorizationLayout from "../../components/un_authorization_layout/UnAu
 import ForgotPasswordForm from "../../components/forgot_password_form/ForgotPasswordForm"
 
 function ForgotPassword (){ 
-  console.log(1)
   return (
     <UnAuthorizationLayout 
       body={<ForgotPasswordForm/>}
