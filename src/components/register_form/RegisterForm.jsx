@@ -20,14 +20,14 @@ export default function RegisterForm() {
     const [loading, set_loading] = useState(false)
     const navigate = useNavigate()
 
-    const submit_form = async () => {
+    const submit_form = async (e) => {
         set_loading(true)
         const email = user_email?.current?.value
         const full_name = user_name?.current?.value
         const password = user_password?.current?.value
         const re_password = user_re_password?.current?.value
         const user_type = "normal_user"
-        console.log(password, re_password)
+        
         if (re_password !== password) {
             set_loading(false)
             set_form_error(true)
@@ -48,7 +48,6 @@ export default function RegisterForm() {
             }
         )
         const register_result = register_response.data
-        console.log(register_result)
         
         set_form_message(register_result.message)
         
@@ -61,8 +60,14 @@ export default function RegisterForm() {
         }
     }
 
+    const submit_form_by_enter = (e) => {
+        if (e.key === 'Enter') {
+            submit_form()
+        }
+    }
+
     return (
-    <div className={form_error ? "form error" : "form"}>
+    <div className={form_error ? "form error" : "form"} onKeyDown={submit_form_by_enter}>
         <label 
             htmlFor="form__login-email-input" 
             className="form__input-label"

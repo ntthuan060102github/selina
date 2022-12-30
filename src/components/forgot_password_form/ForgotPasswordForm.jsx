@@ -71,8 +71,13 @@ export default function ForgotPasswordForm () {
         set_loading(false)
     }
 
+    const submit_form_by_enter = (e) => {
+        if (e.key === 'Enter') {
+            submit_form()
+        }
+    }
     return (
-        <div className={form_error ? "form error" : "form"}>
+        <div className={form_error ? "form error" : "form"} onKeyDown={submit_form_by_enter}>
             <label htmlFor="form__forgot-password-input" className="form__input-label">Email</label>
             <input 
                 type="email" 

@@ -57,8 +57,14 @@ export default function Login({set_has_token, set_owner_role, set_user_data}) {
         return
     }
 
+    const submit_form_by_enter = (e) => {
+        if (e.key === 'Enter') {
+            submit_form()
+        }
+    }
+
     return (
-    <div className={form_error ? "form error" : "form"}>
+    <div className={form_error ? "form error" : "form"} onKeyDown={submit_form_by_enter}>
         <div className="form__wrapper">
             <label 
                 htmlFor="form__login-email-input" 
