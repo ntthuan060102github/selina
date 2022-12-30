@@ -48,11 +48,15 @@
     font-weight: bold;
     margin-bottom: 20px;
 }
+.book-detail-info__author,
 .book-detail-info__quantity,
 .book-detail-info__desc {
     font-size: 24px;
-    color: var(--text-color-5);
     margin-bottom: 20px;
+}
+.book-detail-info__quantity,
+.book-detail-info__desc {
+    color: var(--text-color-5);
 }
 .book-detail-info__take-an-order-area{
     display: flex;

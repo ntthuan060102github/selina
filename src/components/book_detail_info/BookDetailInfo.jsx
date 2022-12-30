@@ -100,6 +100,9 @@ export default function BookDetailInfo({set_has_token, book_data}) {
                     <div className="book-detail-info__price">
                         {book_data?.price || "---"}đ
                     </div>
+                    <div className="book-detail-info__author">
+                        Tác giả:&nbsp;&nbsp;{book_data?.author}
+                    </div>
                     <div className="book-detail-info__desc">
                         {book_data?.desc}
                     </div>
