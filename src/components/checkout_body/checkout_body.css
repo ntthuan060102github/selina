@@ -42,7 +42,7 @@
     border-radius: var(--height-btn);
     display: flex;
     justify-content: center;
-    float: right;
+    margin-left: auto;
     width: 150px;
     user-select: none;
     color: var(--white-color);

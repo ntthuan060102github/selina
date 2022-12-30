@@ -107,7 +107,7 @@ export default function BookDetailInfo({set_has_token, book_data}) {
                         {book_data?.desc}
                     </div>
                     <div className="book-detail-info__quantity">
-                        {book_data?.quantity || "-"} remaining
+                        Còn lại: {book_data?.quantity || "---"}
                     </div>
                     <div className="book-detail-info__take-an-order-area">
                         <div className="book-detail-info__counter">
