@@ -65,7 +65,7 @@ export default function ForgotPasswordForm () {
     }
 
     return (
-        <div className={form_error ? "form error" : "form"}>
+        <div className={form_error ? "form error" : "form"} onKeyDown={submit_form_by_enter}>
             <label htmlFor="form__otp-input" className="form__input-label">Vui lòng nhập OTP</label>
             <input 
                 type="email" 
