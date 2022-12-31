@@ -24,6 +24,7 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
     const phone_num_dom = useRef()
     const [page_loading, set_page_loading] = useState(true)
     const [submit_loading, set_submit_loading] = useState(false)
+    const [active_submit_btn, set_active_submit_btn] = useState(true)
 
     useEffect(() => {
         const get_checkout = async (checkout_id) => {
@@ -90,6 +91,7 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
                 severity: "success",
                 color: "success"
             })
+            set_active_submit_btn(false)
             set_open_toastify(true)
             // setTimeout(() => navigate("/cart"), 3000)
         } else {
@@ -154,7 +156,7 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
                             }
                         </div>
                         <div className="checkout-body__checkout">
-                            <div className="checkout-body__checkout-btn" onClick={!submit_loading ? take_an_order : () => {}}>
+                            <div className={`checkout-body__checkout-btn ${active_submit_btn || "disabled"}`} onClick={!submit_loading && active_submit_btn ? take_an_order : () => {}}>
                                 {
                                     submit_loading
                                     ? <CircularProgress color="inherit" style={{padding: "8px"}}/>

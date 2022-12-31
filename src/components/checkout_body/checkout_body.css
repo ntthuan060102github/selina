@@ -63,3 +63,10 @@
     display: flex;
     justify-content: center;
 }
+.checkout-body__checkout-btn.disabled {
+    opacity: 0.8;
+    cursor: default;
+}
+.checkout-body__checkout-btn.disabled:hover {
+    background-color: var(--blue-primary-color);
+}
