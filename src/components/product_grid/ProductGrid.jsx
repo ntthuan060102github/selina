@@ -60,8 +60,12 @@ export default function ProductGrid({api, set_has_token}) {
                     </div>
                     <div className="product-grid__pagination">
                         <Pagination 
+                            variant="outlined" 
+                            color="primary"
+                            defaultPage={curr_page}
                             count={num_pages} 
-                            variant="outlined"
+                            showFirstButton
+                            showLastButton
                             onChange={click_pagination_bar}
                         />
                     </div>
