@@ -91,7 +91,7 @@ export default function CheckoutBody({ set_has_token, checkout_id }) {
                 color: "success"
             })
             set_open_toastify(true)
-            setTimeout(() => navigate("/cart"), 3000)
+            // setTimeout(() => navigate("/cart"), 3000)
         } else {
             set_message({
                 content: response?.data?.message,
