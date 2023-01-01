@@ -89,7 +89,7 @@ export default function CartBody({set_has_token}) {
                 </>
                 : (
 
-                    is_no_item
+                    !shops.length
                     ? (
                         <>
                             <div className="cart-body--no-item">
@@ -102,6 +102,7 @@ export default function CartBody({set_has_token}) {
                             {
                                 shops.map(shop => <ShopSection 
                                     shop_data={shop}
+                                    set_origin_shops_data={set_shops}
                                     set_checkout_id={set_checkout_id}
                                     set_checkout_shop={set_checkout_shop}
                                     set_total_price={set_total_price}

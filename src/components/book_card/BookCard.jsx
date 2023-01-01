@@ -2,8 +2,6 @@ import "./book_card.css"
 import { Link } from "react-router-dom"
 
 export default function BookCard({book}) {
-    console.log(book)
-
     return (
         <Link to={`/book/${book.product_id}`} className="book-card">
             <div className="book-card__img-area">

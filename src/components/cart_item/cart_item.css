@@ -59,3 +59,6 @@
     user-select: none;
     cursor: pointer;
 }
+.cart-item__del-btn {
+    cursor: pointer;
+}
