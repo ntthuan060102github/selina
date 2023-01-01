@@ -88,8 +88,15 @@ export default function CartItem({ set_has_token, set_origin_books_data, origin_
         })
 
         if (response?.data?.status_code === 1) {
-            origin_books_data = origin_books_data.filter(book => book !== book_data)
-            set_origin_books_data(origin_books_data)
+            // origin_books_data = origin_books_data.filter(book => book !== book_data)
+            set_origin_books_data(
+                origin => {
+                    console.log(origin)
+                    const new_origin = origin.filter(b => Number(b.book_in_cart_id) != Number(book_data.book_in_cart_id))
+                    console.log(new_origin)
+                    return new_origin.length ? new_origin : null
+                }
+            )
         }
     }
 
@@ -101,7 +108,6 @@ export default function CartItem({ set_has_token, set_origin_books_data, origin_
     return (
         <>
             {
-
                 !hidden
                 ? <div className="cart-item">
                     <div className="cart-item__group">

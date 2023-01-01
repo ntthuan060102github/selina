@@ -46,13 +46,6 @@ export default function CartBody({set_has_token}) {
         get_cart_info()
     }, [])
 
-    let is_no_item = true
-    if (shops.length === 0 || !shops) {
-        is_no_item = true
-    } else {
-        is_no_item = false
-    }
-
     const handle_close_toastify = (event, reason) => {
         if (reason === 'clickaway') {
             return;
