@@ -19,33 +19,9 @@ export default function ShopSection({ set_has_token, set_origin_shops_data, shop
     const check_dom = useRef()
 
     useEffect(() => {
-        const init = async () => {
-            if (books === null) {
-                const response = await axios.post(
-                    `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/remove-book-group`,
-                    {
-                        book_group_id: shop_data?.group_id
-                    },
-                    {
-                        headers: {
-                            authorization: localStorage.getItem("access_token")
-                        }
-                    }
-                ).then((response) => {
-                    if (response?.data?.status_code?.toString() === '2') {
-                        localStorage.removeItem("access_token")
-                        set_has_token(false)
-                        return navigate("/authorization")
-                    }
-                    return response
-                })
-    
-                if (response?.data?.status_code === 1) {
-                    set_origin_shops_data(shops_data => shops_data.filter(shop => shop.group_id !== shop_data.group_id))
-                }
-            }
+        if (books === null) {
+            remove_section()
         }
-        init()
     }, [books?.length])
 
     const synchronize_total_price = () => {
@@ -58,6 +34,31 @@ export default function ShopSection({ set_has_token, set_origin_shops_data, shop
         set_total_price(shop_total_price)
         set_checkout_id(shop_data?.group_id)
         set_checkout_shop(shop_data)
+    }
+
+    const remove_section = async () => {
+        const response = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/remove-book-group`,
+            {
+                book_group_id: shop_data?.group_id
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+
+        if (response?.data?.status_code === 1) {
+            set_origin_shops_data(shops_data => shops_data.filter(shop => shop.group_id !== shop_data.group_id))
+        }
     }
 
     return (
