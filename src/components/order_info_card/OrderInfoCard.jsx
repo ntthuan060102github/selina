@@ -22,27 +22,131 @@ export default function OrderInfoCard({order, set_has_token}) {
     )
     const [hidden, set_hidden] = useState(false)
     const [loading, set_loading] = useState(false)
+    const cancel_order = async () => {
+        set_loading(true)
+        const response = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/modify-order-status`,
+            {
+                order_id: order.order_id,
+                order_status: "cancelled"
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+
+        if (response.data.status_code === 1) {
+            order.status = "cancelled"
+            set_order_status(order_status_adapter("cancelled"))
+        }
+        set_loading(false)
+    }
+
+    const received_order = async () => {
+        set_loading(true)
+        const response = await axios.post(
+            `${SELINA_API_SERVICE_INFOS.bookshelves[APP_ENV].domain}/modify-order-status`,
+            {
+                order_id: order.order_id,
+                order_status: "delivered"
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("access_token")
+                }
+            }
+        ).then((response) => {
+            if (response?.data?.status_code?.toString() === '2') {
+                localStorage.removeItem("access_token")
+                set_has_token(false)
+                return navigate("/authorization")
+            }
+            return response
+        })
+
+        if (response.data.status_code === 1) {
+            order.status = "delivered"
+            set_order_status(order_status_adapter("delivered"))
+        }
+        set_loading(false)
+    }
+
+    const order_status_adapter = (status) => {
+        switch (status) {
+            case "rejected":
+                return {
+                    message: "Bị từ chối",
+                    modifier: "rejected",
+                    button: false
+                }
+            case "delivering":
+                return {
+                    message: "Đang giao",
+                    modifier: "delivering",
+                    button: (
+                        <>
+                            <div className="order-info-cart__modify-btn-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11.25" stroke="white"/>
+                                    <path d="M7 12L10.75 15.75L17 8.25" stroke="white"/>
+                                </svg>
+                            </div>
+                            <div className="order-info-cart__modify-btn-lab">
+                                Đã nhận hàng
+                            </div>
+                        </>
+                    ),
+                    event: received_order
+                }
+            case "waiting":
+                return {
+                    message: "Chờ xác nhận",
+                    modifier: "waiting",
+                    button: (
+                        <>
+                            <div className="order-info-cart__modify-btn-icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.5 0.5L0.5 15.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M0.5 0.5L15.5 15.5" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            <div className="order-info-cart__modify-btn-lab">
+                                Hủy đơn hàng
+                            </div>
+                        </>
+                    ),
+                    event: cancel_order
+                }
+            case "delivered":
+                return {
+                    message: "Đã nhận",
+                    modifier: "delivered",
+                    button: false
+                }
+            case "cancelled":
+                return {
+                    message: "Đã hủy",
+                    modifier: "cancelled",
+                    button: false
+                }
+        }
+    }
+    const [order_status, set_order_status] = useState(order_status_adapter(order.status))
 
     const handle_close_toastify = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
         set_open_toastify(false);
-    }
-
-    const order_status_adapter = (status) => {
-        switch (status) {
-            case "rejected":
-                return "Bị từ chối"
-            case "delivering":
-                return "Đang giao"
-            case "waiting":
-                return "Chờ xác nhận"
-            case "delivered":
-                return "Đã giao"
-            case "cancelled":
-                return "Đã hủy"
-        }
     }
 
     const approve_an_order_handle = async () => {
@@ -148,18 +252,35 @@ export default function OrderInfoCard({order, set_has_token}) {
                     </div>
                     {
                         user_role === "normal_user"
-                        ? <div className="order-info-cart__row order-info-cart__row--border order-info-cart__row--p order-info-cart__row--df">
-                            <div className="order-info-cart__order-status">
-                                <div className="order-info-cart__order-status-label">Trạng thái đơn hàng: </div>
-                                <div className="order-info-cart__order-status-result">{order_status_adapter(order.status)}</div>
-                            </div>
-                            <div className="order-info-cart__order-price">
-                                Tổng cộng: 
-                                <div className="order-info-cart__order-price-num">
-                                    {order.total_price + "đ"}
+                        ? <>
+                            <div className="order-info-cart__row order-info-cart__row--border order-info-cart__row--p order-info-cart__row--df">
+                                <div className="order-info-cart__order-status">
+                                    <div className="order-info-cart__order-status-label">Trạng thái đơn hàng: </div>
+                                    <div className={`order-info-cart__order-status-result ${order_status.modifier}`}>{order_status.message}</div>
+                                </div>
+                                <div className="order-info-cart__order-price">
+                                    Tổng cộng: 
+                                    <div className="order-info-cart__order-price-num">
+                                        {order.total_price + "đ"}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div className="order-info-cart__row">
+                                {
+                                    order_status.button
+                                    ? <div className="order-info-cart__modify-order">
+                                        <div className={`order-info-cart__modify-btn ${order_status.modifier}`} onClick={order_status.event}>
+                                            {
+                                                loading
+                                                ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
+                                                : order_status.button
+                                            }
+                                        </div>
+                                    </div>
+                                    : <></>
+                                }
+                            </div>
+                        </>
                         : <></>
                     }
                     <div className="order-info-cart__row">

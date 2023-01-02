@@ -44,6 +44,21 @@
 .order-info-cart__order-status-result {
     margin-left: 8px;
 }
+.order-info-cart__order-status-result.rejected {
+    color: var(--red-color);
+}
+.order-info-cart__order-status-result.delivering {
+    color: var(--yellow-color);
+}
+.order-info-cart__order-status-result.delivered {
+    color: var(--green-color);
+}
+.order-info-cart__order-status-result.cancelled {
+    color: var(--grey-color);
+}
+.order-info-cart__order-status-result.waiting {
+    color: var(--blue-color);
+}
 .order-info-cart__row--df {
     display: flex;
     justify-content: space-between;
@@ -62,4 +77,37 @@
 }
 .order-info-cart__btn-area {
     color: var(--white-color);
+}
+.order-info-cart__modify-btn-icon,
+.order-info-cart__modify-order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order-info-cart__modify-btn {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    border-radius: 50px;
+    width: 180px;
+    margin-top: 12px;
+}
+.order-info-cart__modify-btn-lab {
+    margin-left: 12px;
+}
+.order-info-cart__modify-btn.waiting {
+    background-color: var(--red-color);
+    transition: 0.25s;
+}
+.order-info-cart__modify-btn.waiting:hover {
+    background-color: var(--red-highlight-color);
+}
+.order-info-cart__modify-btn.delivering {
+    background-color: var(--green-color);
+    transition: 0.25s;
+}
+.order-info-cart__modify-btn.delivering:hover {
+    background-color: var(--green-highlight-color);
 }

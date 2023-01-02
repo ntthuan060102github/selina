@@ -31,10 +31,10 @@ export default function SecondaryLayout({set_has_token, nav, body, origin_user_d
                     <div className="secondary-layout__sub-area-wrapper">
                         <div className="secondary-layout__sub-area-row">
                             <div className="secondary-layout___user-avt">
-                                <img src={origin_user_data.avatar_url || "/images/default_avt.png"} className="secondary-layout___user-avt-img" />
+                                <img src={origin_user_data?.avatar_url || "/images/default_avt.png"} className="secondary-layout___user-avt-img" />
                             </div>
                             <div className="secondary-layout___user-name">
-                                {origin_user_data.full_name}
+                                {origin_user_data?.full_name}
                             </div>
                         </div>
                         <div className="secondary-layout__sub-area-row">

@@ -116,7 +116,7 @@ function App() {
             path="" 
             element={
               has_token
-              ? <Home set_has_token={set_has_token} owner_role={owner_role}/>
+              ? <Home set_has_token={set_has_token} owner_role={owner_role} origin_user_data={user_data}/>
               : <Navigate to="/authorization"/>
             }
           />
@@ -156,7 +156,7 @@ function App() {
             path="order/:user_id" 
             element={
               has_token 
-              ? <Order set_has_token={set_has_token}/>
+              ? <Order set_has_token={set_has_token} origin_user_data={user_data}/>
               : <Navigate to="/authorization"/>
             }
           />
@@ -164,7 +164,7 @@ function App() {
             path="seller-requirements" 
             element={
               has_token 
-              ? <SellerRequirements set_has_token={set_has_token}/>
+              ? <SellerRequirements set_has_token={set_has_token} origin_user_data={user_data}/>
               : <Navigate to="/authorization"/>
             }
           />

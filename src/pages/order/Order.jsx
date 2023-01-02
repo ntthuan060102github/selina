@@ -2,11 +2,12 @@ import SecondaryLayout from "../../components/secondary_layout/SecondaryLayout"
 import OrderBody from "../../components/order_body/OrderBody"
 import UserProfileMenu from "../../components/user_profile_menu/UserProfileMenu"
 
-export default function Order({set_has_token}) {
+export default function Order({set_has_token, origin_user_data}) {
 
     return (
         <SecondaryLayout 
             set_has_token={set_has_token} 
+            origin_user_data={origin_user_data}
             body={<OrderBody set_has_token={set_has_token}/>} 
             nav={
                 <UserProfileMenu

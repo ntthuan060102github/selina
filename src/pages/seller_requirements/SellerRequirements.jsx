@@ -2,11 +2,12 @@ import SecondaryLayout from "../../components/secondary_layout/SecondaryLayout"
 import SellerRequirementsBody from "../../components/seller_requirements_body/SellerRequirementsBody"
 import UserProfileMenu from "../../components/user_profile_menu/UserProfileMenu"
 
-export default function SellerRequirements({set_has_token}) {
+export default function SellerRequirements({set_has_token, origin_user_data}) {
 
     return (
         <SecondaryLayout
             set_has_token={set_has_token}
+            origin_user_data={origin_user_data}
             nav={
                 <UserProfileMenu
                     menu={

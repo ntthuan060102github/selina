@@ -4,7 +4,7 @@ import SecondaryLayout from "../../components/secondary_layout/SecondaryLayout"
 import UserProfileMenu from "../../components/user_profile_menu/UserProfileMenu"
 import AdminHome from "../../components/admin_home/AdminHome"
 
-export default function Home({set_has_token, owner_role}) {
+export default function Home({set_has_token, owner_role, origin_user_data}) {
 
     return (
         <>
@@ -15,6 +15,7 @@ export default function Home({set_has_token, owner_role}) {
                     owner_role === "admin" 
                     ? <SecondaryLayout
                         set_has_token={set_has_token}
+                        origin_user_data={origin_user_data}
                         nav={
                             <UserProfileMenu
                                 menu={

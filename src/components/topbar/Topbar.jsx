@@ -15,7 +15,7 @@ export default function TopBar({user_data}) {
     const navigate = useNavigate()
 
     const submit_search_handler = (e) => {
-        if (["normal_user", "seller"].includes(JSON.parse(sessionStorage.getItem("user_info")).user_type)) {
+        if (["normal_user", "seller"].includes(user_data.user_type)) {
             if (e.key === 'Enter') {
                 const k = keyword?.current?.value
     
