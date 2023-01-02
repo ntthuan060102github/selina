@@ -37,7 +37,7 @@ function App() {
     const init = async () => {
       if (localStorage.getItem("access_token")) {
         const response = await axios.get(
-            `${SELINA_API_SERVICE_INFOS.auth[APP_ENV].domain}/ping`,
+            `${SELINA_API_SERVICE_INFOS.profile[APP_ENV].domain}/get-personal-info`,
             {
                 headers: {
                     Authorization: localStorage.getItem("access_token")
