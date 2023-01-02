@@ -148,7 +148,7 @@ function App() {
             path="profile/:user_id" 
             element={
               has_token 
-              ? <Profile set_has_token={set_has_token}/>
+              ? <Profile set_has_token={set_has_token} user_data={user_data} set_origin_user_data={set_user_data}/>
               : <Navigate to="/authorization"/>
             }
           />
@@ -180,7 +180,7 @@ function App() {
               path="/checkout/:checkout_id"
               element={
                   has_token
-                  ? <Checkout set_has_token={set_has_token}/>
+                  ? <Checkout set_has_token={set_has_token} user_data={user_data}/>
                   : <Navigate to="/authorization"/>
               }
           />

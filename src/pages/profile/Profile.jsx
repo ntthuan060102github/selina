@@ -2,10 +2,10 @@ import SecondaryLayout from "../../components/secondary_layout/SecondaryLayout";
 import ProfileForm from "../../components/profile_form/ProfileForm";
 import UserProfileMenu from "../../components/user_profile_menu/UserProfileMenu";
 
-export default function Profile({set_has_token}) {
+export default function Profile({set_has_token, user_data, set_origin_user_data}) {
     return (
         <SecondaryLayout 
-            body={<ProfileForm/>} 
+            body={<ProfileForm set_origin_user_data={set_origin_user_data}/>} 
             nav={
                 <UserProfileMenu
                     menu={
@@ -44,6 +44,7 @@ export default function Profile({set_has_token}) {
                     }
                 />
             }
+            origin_user_data={user_data}
             set_has_token={set_has_token}
         />
     )

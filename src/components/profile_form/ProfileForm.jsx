@@ -13,7 +13,7 @@ const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 })
 
-export default function ProfileForm({set_has_token}) {
+export default function ProfileForm({set_has_token, set_origin_user_data}) {
     const navigate = useNavigate()
     const [preview_new_avt, set_preview_new_avt] = useState(null)
     const [new_avt_img, set_new_avt_img] = useState(null)
@@ -108,6 +108,7 @@ export default function ProfileForm({set_has_token}) {
         })
         set_submit_loading(false)
         if (modify_response.data.status_code.toString() === "1") {
+            set_origin_user_data(modify_response.data.data)
             set_message({
                 content: "Sửa thông tin thành công!",
                 severity: "success",

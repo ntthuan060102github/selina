@@ -14,10 +14,10 @@ const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 })
 
-export default function CheckoutBody({ set_has_token, checkout_id }) {
+export default function CheckoutBody({ set_has_token, checkout_id, origin_user_data }) {
     const navigate = useNavigate()
     const [checkout_data, set_checkout_data] = useState(null)
-    const [user_data, set_user_data] = useState(JSON.parse(sessionStorage.getItem("user_info")))
+    const [user_data, set_user_data] = useState(origin_user_data)
     const [open, set_open_toastify] = useState(false)
     const [message, set_message] = useState({})
     const address_dom = useRef()
