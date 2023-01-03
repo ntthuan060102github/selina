@@ -54,11 +54,13 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         const price = price_dom?.current?.value
 
         if (!stock || Number.isNaN(stock) || !Number.isInteger(Number(stock))) {
-            set_form_message("Stock la so nguyen")
+            set_loading(false)
+            set_form_message("Số lượng sách không hợp lệ!")
             return
         }
         if (!price || Number.isNaN(price) || !Number.isInteger(Number(price))) {
-            set_form_message("Price la so nguyen")
+            set_loading(false)
+            set_form_message("Giá sản phẩm không hợp lệ!")
             return
         }
         

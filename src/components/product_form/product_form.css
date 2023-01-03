@@ -74,7 +74,7 @@
 
 .product-form__btn {
     --height: 50px;
-    width: 45%;
+    width: 200px;
     height: var(--height);
     display: flex;
     justify-content: center;
@@ -84,6 +84,7 @@
     line-height: var(--height);
     user-select: none;
     cursor: pointer;
+    margin: 0 20px;
 }
 .product-form__btn-icon {
     display: flex;
@@ -127,8 +128,10 @@
 }
 .product-form__info-item--set-btn {
     margin-top: 30px;
+    justify-content: center;
 }
 .product-form__info-item--set-btn-has-mess {
+    justify-content: center;
     margin-top: 10px;
 }
 .product-form__info-item--message {
