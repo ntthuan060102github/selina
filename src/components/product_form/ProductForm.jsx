@@ -111,10 +111,12 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         const price = price_dom?.current?.value
 
         if (!stock || Number.isNaN(stock) || !Number.isInteger(Number(stock))) {
+            set_loading(false)
             set_form_message("Stock la so nguyen")
             return
         }
         if (!price || Number.isNaN(price) || !Number.isInteger(Number(price))) {
+            set_loading(false)
             set_form_message("Price la so nguyen")
             return
         }
@@ -196,7 +198,7 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
 
     return (
         <div className="product-form">
-            <div className="product-form__image-area">
+            <div className="product-form__image-area product-form__image-area--l">
                 <label className="product-form__image-btn">
                     <input 
                         type="file" 
@@ -214,77 +216,79 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
                 </div>
             </div>
             <div className="product-form__info-area">
-                <div className="product-form__info-item">
-                    <label
-                        htmlFor="product-form__info-item-input-name"
-                        className="product-form__info-item-label"
-                    >
-                        Name
-                    </label>
-                    <input
-                        type="text"
-                        className="product-form__info-item-input"
-                        id="product-form__info-item-input-name"
-                        ref={name_dom}
-                    />
-                </div>
-                <div className="product-form__info-item">
-                    <label
-                        htmlFor="product-form__info-item-input-author"
-                        className="product-form__info-item-label"
-                    >
-                        Author
-                    </label>
-                    <input
-                        type="text"
-                        className="product-form__info-item-input"
-                        id="product-form__info-item-input-author"
-                        ref={author_dom}
-                    />
-                </div>
-                <div className="product-form__info-item product-form__info-item--flex-column">
-                    <label
-                        htmlFor="product-form__info-item-input-desc"
-                        className="product-form__info-item-label"
-                    >
-                        Description
-                    </label>
-                    <textarea 
-                        id="product-form__info-item-input-desc" 
-                        rows="10" 
-                        cols="50"
-                        className="product-form__info-item-input"
-                        ref={desc_dom}
-                    >
-                    </textarea>
-                </div>
-                <div className="product-form__info-item">
-                    <label
-                        htmlFor="product-form__info-item-input-stock"
-                        className="product-form__info-item-label"
-                    >
-                        Stock
-                    </label>
-                    <input
-                        type="text"
-                        className="product-form__info-item-input"
-                        id="product-form__info-item-input-stock"
-                        ref={stock_dom}
-                    />
-                </div>
-                <div className="product-form__info-item">
-                    <label
-                        htmlFor="product-form__info-item-input-price"
-                        className="product-form__info-item-label"
-                    >
-                        Price
-                    </label>
-                    <input
-                        type="text"
-                        className="product-form__info-item-input"
-                        id="product-form__info-item-input-price"
-                        ref={price_dom}
-                    />
+                <div className="product-form__info-area_wrapper">
+                    <div className="product-form__info-item">
+                        <label
+                            htmlFor="product-form__info-item-input-name"
+                            className="product-form__info-item-label"
+                        >
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            className="product-form__info-item-input"
+                            id="product-form__info-item-input-name"
+                            ref={name_dom}
+                        />
+                    </div>
+                    <div className="product-form__info-item">
+                        <label
+                            htmlFor="product-form__info-item-input-author"
+                            className="product-form__info-item-label"
+                        >
+                            Author
+                        </label>
+                        <input
+                            type="text"
+                            className="product-form__info-item-input"
+                            id="product-form__info-item-input-author"
+                            ref={author_dom}
+                        />
+                    </div>
+                    <div className="product-form__info-item product-form__info-item--flex-column">
+                        <label
+                            htmlFor="product-form__info-item-input-desc"
+                            className="product-form__info-item-label"
+                        >
+                            Description
+                        </label>
+                        <textarea 
+                            id="product-form__info-item-input-desc" 
+                            rows="10" 
+                            cols="50"
+                            className="product-form__info-item-input"
+                            ref={desc_dom}
+                        >
+                        </textarea>
+                    </div>
+                    <div className="product-form__info-item">
+                        <label
+                            htmlFor="product-form__info-item-input-stock"
+                            className="product-form__info-item-label"
+                        >
+                            Stock
+                        </label>
+                        <input
+                            type="text"
+                            className="product-form__info-item-input"
+                            id="product-form__info-item-input-stock"
+                            ref={stock_dom}
+                        />
+                    </div>
+                    <div className="product-form__info-item">
+                        <label
+                            htmlFor="product-form__info-item-input-price"
+                            className="product-form__info-item-label"
+                        >
+                            Price
+                        </label>
+                        <input
+                            type="text"
+                            className="product-form__info-item-input"
+                            id="product-form__info-item-input-price"
+                            ref={price_dom}
+                        />
+                    </div>
                 </div>
                 <div className="product-form__info-item product-form__info-item--message">
                     <div className={!message_status ? "product-form__message" : "product-form__message product-form__message--success"}>
