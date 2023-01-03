@@ -81,6 +81,16 @@ export default function ProfileForm({set_has_token, set_origin_user_data}) {
             return
         }
 
+        if (!address || !full_name) {
+            set_message({
+                content: "Vui lòng điền đầy đủ thông tin cá nhân!",
+                severity: "error",
+                color: "error"
+            })
+            set_open_toastify(true)
+            return
+        }
+
         const form_data = new FormData()
 
         set_submit_loading(true)

@@ -32,6 +32,12 @@
 .order-info-cart__book-desc{
     flex: 2;
     width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    line-clamp: 7; 
+    -webkit-box-orient: vertical;
 }
 .order-info-cart__book-price {
     flex: 1;

@@ -58,6 +58,14 @@
 .book-detail-info__desc {
     color: var(--text-color-5);
 }
+.book-detail-info__desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    line-clamp: 10; 
+    -webkit-box-orient: vertical;
+}
 .book-detail-info__take-an-order-area{
     display: flex;
     user-select: none;
