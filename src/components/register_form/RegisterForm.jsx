@@ -17,6 +17,7 @@ export default function RegisterForm() {
     const user_name = useRef()
     const user_password = useRef()
     const user_re_password = useRef()
+    const user_type_dom = useRef()
     const [loading, set_loading] = useState(false)
     const navigate = useNavigate()
 
@@ -26,7 +27,7 @@ export default function RegisterForm() {
         const full_name = user_name?.current?.value
         const password = user_password?.current?.value
         const re_password = user_re_password?.current?.value
-        const user_type = "normal_user"
+        const user_type = user_type_dom?.current?.checked ? "normal_user" : "seller"
         
         if (re_password !== password) {
             set_loading(false)
@@ -136,12 +137,37 @@ export default function RegisterForm() {
                 set_form_message("")
             }}
         />
+        <div className="form__input-wrapper">
+            <div className="form__input-wrapper-label">
+                Bạn là:
+            </div>
+            <div className="form__input-wrapper-body">
+                <div className="form__input-radio-wrapper">
+                    <input ref={user_type_dom} defaultChecked={true} value="normal_user" type="radio" id="form__input-radio--buyer" className="form__input-radio" name="user_type"/>
+                    <label 
+                        htmlFor="form__input-radio--buyer" 
+                        className="form__input-label"
+                    >
+                        Khách hàng
+                    </label>
+                </div>
+                <div className="form__input-radio-wrapper">
+                    <input value="seller" type="radio" id="form__input-radio--seller" className="form__input-radio" name="user_type"/>
+                    <label 
+                        className="form__input-label"
+                        htmlFor="form__input-radio--seller"
+                    >
+                        Chủ tiệm
+                    </label>
+                </div>
+            </div>
+        </div>
         <div className="form__message">{form_message}</div>
         <div className="form__submit-btn" onClick={submit_form}>
             {
                 loading
                 ? <CircularProgress color="inherit" style={{padding: "8px"}}/>
-                : "Register"
+                : "Đăng ký"
             }
         </div>
     </div>

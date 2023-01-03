@@ -69,3 +69,31 @@
     margin-right: 16px;
     color: var(--black-color);
 }
+.form__input-wrapper {
+    display: flex;
+}
+.form__input-wrapper-body {
+    display: flex;
+}
+.form__input-wrapper-label {
+    margin-right: 20px;
+    cursor: pointer;
+}
+.form__input-radio-wrapper {
+    height: 30px;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    padding: 0 12px;
+    color: var(--white-color);
+    margin: 0 8px;
+    cursor: pointer;
+}
+.form__input-radio {
+    margin-right: 8px;
+}
+.form__input-label {
+    cursor: pointer;
+}
