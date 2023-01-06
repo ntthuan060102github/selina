@@ -17,7 +17,6 @@ const Alert = forwardRef(function Alert(props, ref) {
 export default function CheckoutBody({ set_has_token, checkout_id, origin_user_data }) {
     const navigate = useNavigate()
     const [checkout_data, set_checkout_data] = useState(null)
-    const [user_data, set_user_data] = useState(origin_user_data)
     const [open, set_open_toastify] = useState(false)
     const [message, set_message] = useState({})
     const address_dom = useRef()
@@ -45,11 +44,11 @@ export default function CheckoutBody({ set_has_token, checkout_id, origin_user_d
             })
             set_checkout_data(response.data.data[0])
             set_page_loading(false)
-            address_dom.current.value = user_data?.address
-            phone_num_dom.current.value = user_data?.phone_num
+            address_dom.current.value = response.data.data[0]?.user_info?.address
+            phone_num_dom.current.value = response.data.data[0]?.user_info?.phone_num
         }
         get_checkout(checkout_id)
-    }, [])
+    }, [origin_user_data])
 
     const take_an_order = async () => {
         const vietnam_phone_nm_re = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g
