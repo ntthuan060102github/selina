@@ -11,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import SELINA_API_SERVICE_INFOS from "../../configs/selina_service_infos"
 
 export default function ForgotPasswordForm () {
-    const [message, set_message] = useState(`Mật khẩu sẽ được gửi tới Email của bạn!`)
+    const [message, set_message] = useState(`Mật khẩu mới sẽ được gửi tới Email của bạn!`)
     const guest_email = useRef()
     const email_regex_validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     const [form_error, set_form_error] = useState(false)

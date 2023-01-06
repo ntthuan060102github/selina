@@ -20,9 +20,9 @@
     user-select: none;
 }
 .main-region__logo {
-    width: 40%;
+    width: 30%;
     height: auto;
-    margin-bottom: 60px;
+    margin-bottom: 48px;
     user-select: none;
     /* object-fit: cover; */
 }

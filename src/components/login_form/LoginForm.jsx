@@ -100,7 +100,9 @@ export default function Login({set_has_token, set_owner_role, set_user_data}) {
                     set_form_message("")
                 }}
             />
-            <Link to="/authorization/forgot-password" className="form__nav-to-forgot-password">Quên mật khẩu?</Link>
+            <div className="form__forgot-password">
+                <Link to="/authorization/forgot-password" className="form__nav-to-forgot-password">Quên mật khẩu?</Link>
+            </div>
             <div className="form__message">{form_message}</div>
             <div className="form__submit-btn" onClick={submit_form}>
                 {
