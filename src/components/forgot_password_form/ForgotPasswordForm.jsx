@@ -40,7 +40,7 @@ export default function ForgotPasswordForm () {
 
         if (user_email === "") {
             set_form_error(true)
-            set_message("Vui lòng điền đầy đủ thông tin để tiến hành đăng ký!")
+            set_message("Vui lòng điền Email để tiến hành khôi phục mật khẩu!")
             set_loading(false)
             return
         }
