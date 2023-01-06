@@ -43,6 +43,7 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         set_preview_image(e.target.files[0])
         preview_img_dom.current.src = URL.createObjectURL(e.target.files[0])
     }
+
     const submit_post_handler = async (e) => {
         set_loading(true)
         const form_data = new FormData()
@@ -52,6 +53,12 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         const desc = desc_dom?.current?.value
         const stock = stock_dom?.current?.value
         const price = price_dom?.current?.value
+        
+        if(!name) {
+            set_loading(false)
+            set_form_message("Vui lòng nhập tên sản phẩm!")
+            return
+        }
 
         if (!stock || Number.isNaN(stock) || !Number.isInteger(Number(stock))) {
             set_loading(false)
@@ -111,6 +118,8 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         const desc = desc_dom?.current?.value
         const stock = stock_dom?.current?.value
         const price = price_dom?.current?.value
+
+        set_message_status(true)
 
         if(!name) {
             set_loading(false)
