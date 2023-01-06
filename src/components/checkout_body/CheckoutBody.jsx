@@ -44,8 +44,8 @@ export default function CheckoutBody({ set_has_token, checkout_id, origin_user_d
             })
             set_checkout_data(response.data.data[0])
             set_page_loading(false)
-            address_dom.current.value = response.data.data[0]?.user_info?.address
-            phone_num_dom.current.value = response.data.data[0]?.user_info?.phone_num
+            // address_dom.current.value = response.data.data[0]?.user_info?.address
+            // phone_num_dom.current.value = response.data.data[0]?.user_info?.phone_num
         }
         get_checkout(checkout_id)
     }, [origin_user_data])
@@ -139,12 +139,14 @@ export default function CheckoutBody({ set_has_token, checkout_id, origin_user_d
                                     type="text"
                                     className="checkout-body__form-input"
                                     id="checkout-body__user-address"
+                                    defaultValue={checkout_data?.user_info?.address}
                                     ref={address_dom}
                                 />
                                 <input
                                     type="text"
                                     className="checkout-body__form-input"
                                     id="checkout-body__user-phone-number"
+                                    defaultValue={checkout_data?.user_info?.phone_num}
                                     ref={phone_num_dom}
                                 />
                             </div>
