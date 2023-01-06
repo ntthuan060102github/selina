@@ -112,14 +112,20 @@ export default function ProductForm({set_open, set_has_token, book_data}) {
         const stock = stock_dom?.current?.value
         const price = price_dom?.current?.value
 
+        if(!name) {
+            set_loading(false)
+            set_form_message("Vui lòng nhập tên sản phẩm!")
+            return
+        }
+
         if (!stock || Number.isNaN(stock) || !Number.isInteger(Number(stock))) {
             set_loading(false)
-            set_form_message("Stock la so nguyen")
+            set_form_message("Số lượng sản phẩm không hợp lệ!")
             return
         }
         if (!price || Number.isNaN(price) || !Number.isInteger(Number(price))) {
             set_loading(false)
-            set_form_message("Price la so nguyen")
+            set_form_message("Giá sản phẩm không hợp lệ!")
             return
         }
         
