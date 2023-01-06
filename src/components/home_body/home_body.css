@@ -4,6 +4,7 @@
 }
 .home-body__main-banner {
     width: 100%;
+    box-shadow: 0 0 8px 4px #ccc;
 }
 .home-body__main-banner-img {
     width: 100%;

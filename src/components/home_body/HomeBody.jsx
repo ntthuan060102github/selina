@@ -37,7 +37,7 @@ export default function HomeBody({set_has_token, owner_role}) {
                 ? 
                 <div className="home-body__main-banner">
                     <img 
-                        src="https://minhduongads.com/wp-content/uploads/2019/03/truyen-thong-minh-duong.jpg" 
+                        src="https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/banner.png?alt=media&token=60840763-6aea-4f9e-8413-779fb95a2d76" 
                         alt="" 
                         className="home-body__main-banner-img" 
                     />
