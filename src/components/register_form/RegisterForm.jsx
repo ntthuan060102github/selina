@@ -28,6 +28,13 @@ export default function RegisterForm() {
         const password = user_password?.current?.value
         const re_password = user_re_password?.current?.value
         const user_type = user_type_dom?.current?.checked ? "normal_user" : "seller"
+
+        if ([email, full_name, password, re_password].includes("")) {
+            set_loading(false)
+            set_form_error(true)
+            set_form_message("Vui lòng điền đầy đủ thông tin!")
+            return
+        }
         
         if (re_password !== password) {
             set_loading(false)
