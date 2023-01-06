@@ -127,7 +127,7 @@ export default function RegisterForm() {
             Xác nhận mật khẩu
         </label>
         <input 
-            type="email" 
+            type="password" 
             className="form__input" 
             id="form__login-re-password-input"
             placeholder="Xác nhận mật khẩu"  

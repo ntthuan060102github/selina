@@ -19,7 +19,7 @@ export default function BookDetailInfo({set_has_token, book_data}) {
     const [loading, set_loading] = useState(false)
     const [open, set_open_toastify] = useState(false)
     const [toastify_data, set_toastify_data] = useState({
-        message: "Thêm vào giỏ hành thành công!",
+        message: "Thêm vào giỏ hàng thành công!",
         severity: "success"
     })
     const navigate = useNavigate()
@@ -61,7 +61,7 @@ export default function BookDetailInfo({set_has_token, book_data}) {
 
         if (res?.data?.status_code.toString() === "1") {
             set_toastify_data({
-                message: "Thêm vào giỏ hành thành công!",
+                message: "Thêm vào giỏ hàng thành công!",
                 severity: "success"
             })
             set_open_toastify(true)
