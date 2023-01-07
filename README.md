@@ -1,6 +1,6 @@
 # **SELINA - BOOK IS LIFE**
 [![N|Solid](https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/Selina%20small.png?alt=media&token=9aeb31a4-6a94-4743-832f-6c065ca0dbdf)](https://selina-ecommerce.netlify.app/)
-> ### E-commerce Web Page, solely for books.
+> ### E-commerce Website, solely for books.
 
 ---
 # **_INTRODUCTION_**
@@ -47,7 +47,7 @@ npm start
 ![N|Solid](https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/Screenshot%202023-01-07%20174354.png?alt=media&token=cfb6079f-4c90-4849-98e8-4151a58d6304)
 ## Step 4: Connect to your repository on Github
 ![N|Solid](https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/Screenshot%202023-01-07%20174535.png?alt=media&token=1cf5bda8-5798-4bea-83e0-15236ab5e80a)
-## Step 5: Fulfill your Web Service information and config commands shown as in the below picture. Before, submit it.
+## Step 5: Fulfill your Web Service information and configure commands as shown in the below picture before submit it.
 ![N|Solid](https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/Screenshot%202023-01-07%20174728.png?alt=media&token=8bab52b4-8aa0-4595-a727-e28a9b72d9d7)
 
 ## Step 6: In Environment tab, click "Add a Variable" and create 2 variables below:
@@ -60,6 +60,12 @@ npm start
 # **_DEMO PROJECT_**
 ### See [here](https://www.youtube.com/watch?v=xlc2mJa0J6Q)
 [![N|Solid](https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/Screenshot%202023-01-07%20164826.png?alt=media&token=795a38fc-63b3-42b6-a82d-c2dfe219cdd6)](https://www.youtube.com/watch?v=xlc2mJa0J6Q)
+
+# **_Current Status_**
+## MVP version released.
+
+# **_Future Work_**
+## Stay tuned for upcoming update
 
 [Visual Studio Code]: <https://code.visualstudio.com/download>
 [MongoDB Compass]: <https://www.mongodb.com/products/compass>
