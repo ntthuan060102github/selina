@@ -50,7 +50,7 @@ npm start
 ## Step 5: Fulfill your Web Service information and config commands shown as in the below picture. Before, submit it.
 ![N|Solid](https://firebasestorage.googleapis.com/v0/b/selina-d8690.appspot.com/o/Screenshot%202023-01-07%20174728.png?alt=media&token=8bab52b4-8aa0-4595-a727-e28a9b72d9d7)
 
-## Step 6: In Environment tab, click "Add Environment Variable" and create 6 variables below:
+## Step 6: In Environment tab, click "Add a Variable" and create 2 variables below:
 ```
     APP_ENV: production
     CI: False
