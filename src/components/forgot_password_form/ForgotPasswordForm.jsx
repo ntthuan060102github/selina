@@ -23,7 +23,7 @@ export default function ForgotPasswordForm () {
     useEffect(() => {
         timer = countdown > -1 && setInterval(() => {
             set_countdown(countdown - 1)
-            set_message(`Success, redirect to login (${countdown})`)
+            set_message(`Thành công, chuyển hướng đến Đăng nhập (${countdown})`)
             
             if (countdown <= 0) {
                 clearInterval(timer)
